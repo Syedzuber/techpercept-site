@@ -8,7 +8,8 @@ The Techpercept website. One static page, no build step required to deploy — `
 index.html              ← the deployed page (generated — do not hand-edit)
 template.html           ← the page's markup: edit THIS
 assets/css/styles.css   ← all CSS, design-system tokens at the top: edit THIS
-assets/js/config.js     ← launch values, hero enquiry sources, and the four Act I scenarios: edit THIS
+assets/js/config.js     ← YOUR file: launch values + hero enquiry sources. Nothing else touches it
+assets/js/scenarios.js  ← the four Act I businesses (page copy)
 assets/js/main.js       ← road engine, form wiring, hero source rotation
 build.py                ← assembles index.html; stamps every assets/ link with a content hash
 src/                    ← outlined wordmark paths, favicon, logo SVGs (build inputs; not served)
@@ -73,7 +74,7 @@ git push -u origin main
 
 ## Act I — the four businesses
 
-Act I is one road with a switch. The copy for all four businesses (has no system / bought a system / outgrew its system / has four systems) lives in `assets/js/config.js` as `TP_SCENARIOS`; the markup in `template.html` is empty slots. To change a caption, edit the text there and rebuild. To add a fifth, add an object — but don't: four is the number of discovery-call archetypes, and a fifth chip turns the row into a dropdown. Every scenario that isn't a real client keeps its "A composite." tag.
+Act I is one road with a switch. The copy for all four businesses (has no system / bought a system / outgrew its system / has four systems) lives in `assets/js/scenarios.js` as `TP_SCENARIOS`; the markup in `template.html` is empty slots. To change a caption, edit the text there and rebuild. To add a fifth, add an object — but don't: four is the number of discovery-call archetypes, and a fifth chip turns the row into a dropdown. Every scenario that isn't a real client keeps its "A composite." tag.
 
 ## Editing afterwards
 
