@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Techpercept — The systems a business runs on</title>
+<meta name="description" content="Techpercept builds the revenue, project and field systems a founder-led business runs on — from the first enquiry to the last handover. On Zoho where it fits, custom-built where it doesn't. Solar and EPC is where we've gone deepest.">
+<meta property="og:title" content="Techpercept — The systems a business runs on">
+<meta property="og:description" content="Revenue, project and field systems for founder-led businesses. Trusted by a 400+ MW solar developer in Delhi.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRlY2hwZXJjZXB0Ij4KPHRpdGxlPlRlY2hwZXJjZXB0PC90aXRsZT4KPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjMTYxQTFGIi8+CjxyZWN0IHg9IjMxIiB5PSI4IiB3aWR0aD0iMiIgaGVpZ2h0PSI0OCIgZmlsbD0iI0VFRUJFNCIvPgo8Y2lyY2xlIGN4PSIzMiIgY3k9IjIyIiByPSI2IiBmaWxsPSIjMTYxQTFGIiBzdHJva2U9IiNFRUVCRTQiIHN0cm9rZS13aWR0aD0iMiIvPgo8Y2lyY2xlIGN4PSIzMiIgY3k9IjQyIiByPSI2IiBmaWxsPSIjNUZEMzlBIi8+Cjwvc3ZnPg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@110,700;125,800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Techpercept design system — tokens (Paper theme) ===== */
+:root{
+  --paper:#F2F1ED; --paper-raised:#F7F6F3;
+  --ink:#161A1F; --ink-2:#3A4049; --ink-3:#8A9099; --rule:#C9CCD1;
+  --leak:#B5412A; --signal:#5FD39A; --signal-text:#2E7D5B; --signal-soft:rgba(95,211,154,.07); --signal-on-ink:#7FD4A8; --panel-text:#D9DCE0;
+  --display:"Archivo","Arial Narrow",Impact,sans-serif; --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+  --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:64px; --s6:112px; --station-gap:260px;
+  --hair:1px; --drawn:2px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--leak)}a:hover{color:#8E3220}
+.wrap{width:100%;max-width:1400px;margin:0 auto;padding:0 var(--s5)}
+.mono{font-family:var(--mono)}
+.disp{font-family:var(--display);font-stretch:110%;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";display:inline-block;width:40px;height:1px;background:currentColor}
+.btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:600;font-size:16px;padding:18px 26px}
+.btn-leak{background:var(--leak);color:var(--paper)}.btn-leak:hover{background:#8E3220;color:var(--paper)}
+.btn-ghost{color:var(--ink);padding:18px 8px}.btn-ghost:hover{color:var(--ink)}
+
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;height:80px;border-bottom:var(--hair) solid var(--ink)}
+nav .wm{display:block;height:22px;width:auto}
+nav .wm svg{height:22px;width:auto;display:block}
+nav ul{display:flex;gap:36px;align-items:center;list-style:none;font-family:var(--mono);font-size:13px}
+nav ul a{color:var(--ink);text-decoration:none}nav ul a:hover{color:var(--leak)}
+nav ul a.cta{font-weight:600;border:1.5px solid var(--ink);padding:10px 18px;font-family:var(--sans);font-size:14px}
+nav ul a.cta:hover{background:var(--ink);color:var(--paper)}
+@media(max-width:820px){nav ul li:not(:last-child){display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(480px,100%),1fr));gap:56px;padding:88px 0 0;align-items:start}
+.hero .copy{display:flex;flex-direction:column;gap:32px;padding-top:40px}
+.hero h1{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:clamp(48px,7vw,84px);line-height:.96;letter-spacing:-.035em}
+.hero .lede{font-size:20px;line-height:1.5;max-width:560px;color:var(--ink-2)}
+.hero .trust{font-family:var(--mono);font-size:13px;color:var(--ink-3);border-top:var(--hair) solid var(--rule);padding-top:20px;max-width:560px}
+.hero .follow{font-family:var(--mono);font-size:12px;color:var(--leak);display:flex;align-items:center;gap:10px}
+.hero-draw{position:relative;width:560px;height:520px;max-width:100%}
+.fade{position:absolute;left:0;bottom:0;width:100%;height:80px;background:linear-gradient(to bottom,rgba(242,241,237,0),var(--paper))}
+
+/* road */
+.road-wrap{position:relative;width:1272px;max-width:100%}
+.rail{position:absolute;left:50%;top:0;width:2px;transform:translateX(-50%);background:var(--rule)}
+.road{position:absolute;left:50%;top:0;width:2px;height:0;transform:translateX(-50%);transition:height 1.1s cubic-bezier(.4,0,.2,1)}
+.st{position:absolute;left:50%;transform:translateX(-50%);width:48px;height:48px;border-radius:50%;border:var(--drawn) solid var(--ink);background:var(--paper-raised);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700;transition:background .5s,border-color .5s,color .5s}
+.tok{position:absolute;left:50%;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;border:3px solid var(--paper);opacity:0;transition:top 1.1s cubic-bezier(.4,0,.2,1),opacity .5s}
+.cap{opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
+.cap.on{opacity:1;transform:none}
+.lyr{opacity:0;transform:translateX(-14px);transition:opacity .7s,transform .7s}
+.lyr.on{opacity:1;transform:none}
+.side{position:absolute;width:480px;display:flex;flex-direction:column;gap:8px}
+.side.l{right:calc(50% + 76px);text-align:right;align-items:flex-end}
+.side.r{left:calc(50% + 76px)}
+.side .k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-3)}
+.side .t{font-size:17px;line-height:1.5;color:var(--ink-2);max-width:480px}
+.callout{position:absolute;width:300px;padding:12px 14px;background:var(--paper-raised);font-family:var(--mono);font-size:12px;line-height:17px;color:var(--leak)}
+.callout.r{left:calc(50% + 76px);border-left:var(--drawn) solid var(--leak)}
+.callout.l{right:calc(50% + 76px);text-align:right;border-right:var(--drawn) solid var(--leak)}
+.callout span{color:var(--ink-2)}
+.hl{position:relative;display:inline;font-weight:600;color:var(--ink);background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0 2px;transition:background-size .7s cubic-bezier(.4,0,.2,1) .35s,color .4s ease .35s}
+.on .hl,.hl.on{background-size:100% 2px}
+.hl-red{color:var(--leak)}.hl-red.hl{background-image:linear-gradient(var(--leak),var(--leak))}
+.hl-green{color:var(--signal-text)}.hl-green.hl{background-image:linear-gradient(var(--signal),var(--signal))}
+.hl-light{color:var(--signal-on-ink)}.hl-light.hl{background-image:linear-gradient(var(--signal-on-ink),var(--signal-on-ink))}
+
+.act-head{display:flex;align-items:baseline;gap:20px;padding:40px 0 16px;border-top:var(--hair) solid var(--ink)}
+.act-head .n{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:56px;letter-spacing:-.03em;line-height:1}
+.act-head h2{font-size:clamp(26px,3.2vw,36px)}
+.band{position:absolute;left:40px;right:40px;border:1.5px solid var(--signal);background:var(--signal-soft)}
+.band-t{position:absolute;left:60px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--signal-text)}
+.sum{position:absolute;left:0;right:0;display:flex;align-items:baseline;gap:20px;justify-content:center;flex-wrap:wrap;text-align:center;padding:0 var(--s3)}
+.card{position:absolute;left:50%;transform:translateX(-50%);width:152px;height:92px;border:var(--drawn) solid var(--ink);background:var(--paper-raised);padding:14px;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .5s}
+.card b{font-size:16px}.card small{font-size:12.5px;color:var(--ink-2)}.card .tag{font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+
+/* mobile: stack the road's sides */
+@media(max-width:1100px){
+  .road-wrap{height:auto!important}
+  .rail,.road,.st,.tok,.band,.band-t{display:none}
+  .side,.callout,.sum,.card{position:static;width:auto;max-width:none;text-align:left;align-items:flex-start;transform:none;margin-bottom:var(--s3)}
+  .side.l{text-align:left;align-items:flex-start}
+  .callout.l{text-align:left;border-right:0;border-left:var(--drawn) solid var(--leak)}
+  .cap,.lyr{opacity:1;transform:none}
+  .m-stack{display:flex;flex-direction:column;gap:var(--s2);padding:var(--s3) 0}
+  .m-h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding-top:var(--s2);border-top:var(--hair) solid var(--rule)}
+}
+
+/* who / talk */
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:var(--s5);align-items:start}
+.facts{display:flex;flex-direction:column;border:var(--hair) solid var(--ink);align-self:start}
+.facts div{padding:26px 22px;display:flex;flex-direction:column;gap:6px}
+.facts div+div{border-top:var(--hair) solid var(--ink)}
+.facts .v{font-family:var(--display);font-stretch:110%;font-weight:700;font-size:38px;letter-spacing:-.02em;line-height:1}
+.facts .k{font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+form{display:flex;flex-direction:column;gap:14px;border:var(--hair) solid var(--ink);padding:32px 28px;background:var(--paper-raised)}
+label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600}
+input,select{font-family:inherit;font-size:15px;padding:12px 14px;border:var(--hair) solid var(--ink);background:var(--paper);color:var(--ink);border-radius:0}
+input:focus,select:focus{outline:2px solid var(--leak);outline-offset:1px}
+button{font-family:inherit;font-size:16px;font-weight:600;padding:16px 24px;background:var(--ink);color:var(--paper);border:0;cursor:pointer;align-self:flex-start}
+button:hover{background:var(--leak)}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:28px 0 48px;border-top:var(--hair) solid var(--ink);font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+@media(prefers-reduced-motion:reduce){.road,.st,.tok,.cap,.lyr,.hl,.card{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <a class="wm" href="#top" aria-label="Techpercept"><svg viewBox="0 0 6441 886" role="img" aria-hidden="true"><g fill="var(--ink)" transform="translate(0 686.0)"><path d="M278.06282798945904 0.0V-552.8159848451614H24.878241762518883V-686.7478706687689H690.5189792662859V-552.8159848451614H436.995295509696V0.0Z M1022.3767111003399 12.0Q928.7847921550274 12.0 862.9798196479678 -17.45651590079069Q797.1748471409082 -46.91303180158138 762.4831219166517 -107.95651590079069Q727.7913966923952 -169.0 727.7913966923952 -263.2174072265625Q727.7913966923952 -356.84342412650585 762.0613620877266 -417.8086680546403Q796.331327483058 -478.77391198277473 861.3710343018174 -508.7608913257718Q926.4107411205769 -538.7478706687689 1018.3764797002077 -538.7478706687689Q1109.2382430285215 -538.7478706687689 1171.6954510137439 -509.4478351101279Q1234.1526589989662 -480.14779955148697 1266.1095681786537 -420.8695132061839Q1298.0664773583412 -361.59122686088085 1298.0664773583412 -270.41741359233856V-230.7476806640625H878.1845427155495Q880.2367208749056 -184.48700641095638 896.5455863624811 -153.95675367116928Q912.8544518500566 -123.42650093138218 944.6503237485886 -108.8048716634512Q976.4461956471205 -94.18324239552021 1023.7506528049707 -94.18324239552021Q1047.5681300908327 -94.18324239552021 1070.0247818604112 -99.87018617987633Q1092.4814336299896 -105.55712996423244 1110.3989554941654 -116.83967497199774Q1128.3164773583412 -128.12221997976303 1139.2904907092452 -145.1655751094222Q1150.2645040601492 -162.20893023908138 1151.2036727070808 -184.76527258753777H1296.727284297347Q1296.727284297347 -138.28715182840824 1277.2662459537387 -101.58281302452087Q1257.8052076101303 -64.8784742206335 1221.4918265789747 -39.682767912745476Q1185.1784455478191 -14.487061604857445 1134.6692287102342 -1.2435308024287224Q1084.1600118726492 12.0 1022.3767111003399 12.0ZM879.3410230576992 -321.06102135777473H1145.6385147571564Q1145.6385147571564 -349.85203698277473 1136.4123519062996 -370.6823252812028Q1127.1861890554428 -391.51261357963085 1110.4860404506326 -405.3255880624056Q1093.7858918458223 -419.1385625451803 1071.0509261339903 -425.6168271303177Q1048.3159604221582 -432.09509171545506 1020.9157863408327 -432.09509171545506Q978.5069049298763 -432.09509171545506 948.2197610586882 -419.6429501771927Q917.9326171875 -407.1908086389303 901.0716006085277 -382.44747526943684Q884.2105840295553 -357.70414189994335 879.3410230576992 -321.06102135777473Z M1639.124540373683 12.0Q1547.4717624783516 12.0 1483.2928886041045 -18.030463442206383Q1419.1140147298574 -48.060926884412766 1385.6266421079636 -109.28267450630665Q1352.1392694860697 -170.50442212820053 1352.1392694860697 -263.5304634422064Q1352.1392694860697 -357.15648034214973 1385.8614103868604 -418.0304156765342Q1419.583551287651 -478.9043510109186 1483.7624251618981 -508.8913303539157Q1547.9412990361452 -538.8783096969128 1639.124540373683 -538.8783096969128Q1697.99450789392 -538.8783096969128 1747.0298000127077 -525.6348133906722Q1796.0650921314955 -512.3913170844316 1832.4742245823145 -485.3391049578786Q1868.8833570331335 -458.28689283132553 1888.4966860488057 -417.991163700819Q1908.110015064478 -377.6954345703125 1908.110015064478 -323.6779371201992H1761.4561544507742Q1761.4561544507742 -358.45166015625 1746.268979266286 -381.69507525861263Q1731.0818040817976 -404.93849036097527 1703.498931080103 -416.9167209789157Q1675.9160580784082 -428.8949515968561 1638.1854672580957 -428.8949515968561Q1592.5765126049519 -428.8949515968561 1562.2328162118793 -411.0993588641286Q1531.8891198188066 -393.30376613140106 1516.7672591507435 -358.9343887940049Q1501.6453984826803 -324.5650114566088 1501.6453984826803 -274.0002197176218V-252.46073158085346Q1501.6453984826803 -202.678532615304 1517.0324908718467 -167.98307840526104Q1532.419583261013 -133.2876241952181 1563.8502478525043 -115.57027163356543Q1595.2809124439955 -97.85291907191277 1643.4029010236263 -97.85291907191277Q1680.611777126789 -97.85291907191277 1708.303353741765 -110.274658203125Q1735.994930356741 -122.69639733433723 1751.8299056217074 -146.67458071559668Q1767.664880886674 -170.65276409685612 1767.664880886674 -203.73083601891994H1908.110015064478Q1908.110015064478 -150.63495562970638 1888.3401579409838 -110.07399477809668Q1868.5703008174896 -69.51303392648697 1832.5959488525987 -42.42606572806835Q1796.6215968877077 -15.339097529649734 1747.3080523908138 -1.6695487648248672Q1697.99450789392 12.0 1639.124540373683 12.0Z M1986.7913011610508 0.0V-723.7478706687689H2132.714762017131V-463.2433668076992H2139.8017302155495Q2161.1150305718184 -488.56532141566277 2189.045736029744 -505.15230341255665Q2216.97644148767 -521.7392854094505 2249.767932124436 -530.2435780391097Q2282.559422761202 -538.7478706687689 2317.7333177626133 -538.7478706687689Q2379.464452058077 -538.7478706687689 2422.886503264308 -517.8129134476185Q2466.308554470539 -496.8779562264681 2489.3782019540668 -453.2081564217806Q2512.4478494375944 -409.5383566170931 2512.4478494375944 -340.4860298484564V0.0H2366.0548520237207V-317.16419836878777Q2366.0548520237207 -344.99892896413803 2358.920045532286 -364.41201490163803Q2351.7852390408516 -383.82510083913803 2338.350417688489 -396.04253513365984Q2324.9155963361263 -408.25996942818165 2305.554661490023 -413.855665653944Q2286.19372664392 -419.4513618797064 2261.993599265814 -419.4513618797064Q2226.3325885236263 -419.4513618797064 2197.032457962632 -403.542677372694Q2167.732327401638 -387.63399286568165 2150.2235447093844 -359.83835926651955Q2132.714762017131 -332.04272566735744 2132.714762017131 -295.338407561183V0.0Z M2610.9217401891947 182.60056045651436V-526.7478706687689H2730.0535071343184L2742.2884383499622 -450.9823263436556H2749.7754309624434Q2780.784450367093 -497.252197265625 2827.1412480920553 -518.0000339671969Q2873.4980458170176 -538.7478706687689 2929.1765540093184 -538.7478706687689Q3001.3682595938444 -538.7478706687689 3054.229526683688 -509.19567181169987Q3107.090793773532 -479.64347295463085 3136.3127850070596 -418.5782534405589Q3165.5347762405872 -357.51303392648697 3165.5347762405872 -262.9304878562689Q3165.5347762405872 -169.4174539297819 3136.2345448359847 -108.26092582195997Q3106.934313431382 -47.10439771413803 3055.16869533062 -17.552198857069016Q3003.4030772298574 12.0 2935.2808158546686 12.0Q2899.1417363733053 12.0 2866.7459504529834 4.078274138271809Q2834.3501645326614 -3.8434517234563828 2808.1934400498867 -20.17822265625Q2782.036715567112 -36.51299358904362 2763.5496008843184 -60.92172533273697H2756.8452010452747V182.60056045651436ZM2886.9152842611074 -106.35743567347527Q2931.8805069625378 -106.35743567347527 2960.463216498494 -123.2530517578125Q2989.0459260344505 -140.14866784214973 3002.789510972798 -172.913681961596Q3016.533095911145 -205.6786960810423 3016.533095911145 -253.09559273719788V-272.84364384412766Q3016.533095911145 -321.13010147213936 3002.789510972798 -354.12988387048244Q2989.0459260344505 -387.12966626882553 2960.1501602828503 -403.7600506320596Q2931.25439453125 -420.3904349952936 2886.2891718298197 -420.3904349952936Q2843.202095359564 -420.3904349952936 2814.0845819860697 -402.4861519187689Q2784.9670686125755 -384.58186884224415 2770.57568359375 -351.0124925673008Q2756.1842985749245 -317.44311629235744 2756.1842985749245 -270.0782757252455V-257.1130901873112Q2756.1842985749245 -222.13075004518032 2764.332173489034 -194.0743944272399Q2772.480048403144 -166.01803880929947 2788.849698007107 -146.63987877964973Q2805.2193476110697 -127.26171875 2829.74987898767 -116.80957721173763Q2854.28041036427 -106.35743567347527 2886.9152842611074 -106.35743567347527Z M3513.37671110034 12.0Q3419.7847921550274 12.0 3353.979819647968 -17.45651590079069Q3288.1748471409082 -46.91303180158138 3253.4831219166517 -107.95651590079069Q3218.791396692395 -169.0 3218.791396692395 -263.2174072265625Q3218.791396692395 -356.84342412650585 3253.0613620877266 -417.8086680546403Q3287.331327483058 -478.77391198277473 3352.3710343018174 -508.7608913257718Q3417.410741120577 -538.7478706687689 3509.3764797002077 -538.7478706687689Q3600.2382430285215 -538.7478706687689 3662.695451013744 -509.4478351101279Q3725.152658998966 -480.14779955148697 3757.1095681786537 -420.8695132061839Q3789.066477358341 -361.59122686088085 3789.066477358341 -270.41741359233856V-230.7476806640625H3369.1845427155495Q3371.2367208749056 -184.48700641095638 3387.545586362481 -153.95675367116928Q3403.8544518500566 -123.42650093138218 3435.6503237485886 -108.8048716634512Q3467.4461956471205 -94.18324239552021 3514.7506528049707 -94.18324239552021Q3538.5681300908327 -94.18324239552021 3561.024781860411 -99.87018617987633Q3583.4814336299896 -105.55712996423244 3601.3989554941654 -116.83967497199774Q3619.316477358341 -128.12221997976303 3630.290490709245 -145.1655751094222Q3641.264504060149 -162.20893023908138 3642.203672707081 -184.76527258753777H3787.727284297347Q3787.727284297347 -138.28715182840824 3768.2662459537387 -101.58281302452087Q3748.8052076101303 -64.8784742206335 3712.4918265789747 -39.682767912745476Q3676.178445547819 -14.487061604857445 3625.669228710234 -1.2435308024287224Q3575.160011872649 12.0 3513.37671110034 12.0ZM3370.341023057699 -321.06102135777473H3636.6385147571564Q3636.6385147571564 -349.85203698277473 3627.4123519062996 -370.6823252812028Q3618.186189055443 -391.51261357963085 3601.4860404506326 -405.3255880624056Q3584.7858918458223 -419.1385625451803 3562.0509261339903 -425.6168271303177Q3539.3159604221582 -432.09509171545506 3511.9157863408327 -432.09509171545506Q3469.5069049298763 -432.09509171545506 3439.219761058688 -419.6429501771927Q3408.9326171875 -407.1908086389303 3392.0716006085277 -382.44747526943684Q3375.2105840295553 -357.70414189994335 3370.341023057699 -321.06102135777473Z M3866.791301161051 0.0V-526.7478706687689H3986.523043692112L3997.3492017686367 -440.74772100150585H4004.836194381118Q4016.323281466961 -468.2087667733431 4034.727883517742 -490.46967189759016Q4053.1324855685234 -512.7305770218372 4080.010965101421 -525.8479274585843Q4106.889444634318 -538.9652778953314 4141.515584662557 -538.9652778953314Q4159.185262396932 -538.9652778953314 4174.69842582196 -535.9913669750094Q4190.211589246988 -533.0174560546875 4200.3596329391 -528.9130318015814V-400.8164869248867H4144.080079182982Q4110.132134214044 -400.8164869248867 4085.3190641999245 -390.6642376482487Q4060.5059941858053 -380.51198837161064 4044.371235460043 -361.272818133235Q4028.2364767342806 -342.0336478948593 4020.4756193757057 -315.72501327842474Q4012.714762017131 -289.41637866199017 4012.714762017131 -257.1731201261282V0.0Z M4510.124540373683 12.0Q4418.471762478352 12.0 4354.2928886041045 -18.030463442206383Q4290.114014729857 -48.060926884412766 4256.626642107964 -109.28267450630665Q4223.13926948607 -170.50442212820053 4223.13926948607 -263.5304634422064Q4223.13926948607 -357.15648034214973 4256.86141038686 -418.0304156765342Q4290.583551287651 -478.9043510109186 4354.762425161898 -508.8913303539157Q4418.941299036145 -538.8783096969128 4510.124540373683 -538.8783096969128Q4568.99450789392 -538.8783096969128 4618.029800012708 -525.6348133906722Q4667.0650921314955 -512.3913170844316 4703.4742245823145 -485.3391049578786Q4739.8833570331335 -458.28689283132553 4759.496686048806 -417.991163700819Q4779.110015064478 -377.6954345703125 4779.110015064478 -323.6779371201992H4632.456154450774Q4632.456154450774 -358.45166015625 4617.268979266286 -381.69507525861263Q4602.081804081798 -404.93849036097527 4574.498931080103 -416.9167209789157Q4546.916058078408 -428.8949515968561 4509.185467258096 -428.8949515968561Q4463.576512604952 -428.8949515968561 4433.232816211879 -411.0993588641286Q4402.889119818807 -393.30376613140106 4387.7672591507435 -358.9343887940049Q4372.64539848268 -324.5650114566088 4372.64539848268 -274.0002197176218V-252.46073158085346Q4372.64539848268 -202.678532615304 4388.032490871847 -167.98307840526104Q4403.419583261013 -133.2876241952181 4434.850247852504 -115.57027163356543Q4466.2809124439955 -97.85291907191277 4514.402901023626 -97.85291907191277Q4551.611777126789 -97.85291907191277 4579.303353741765 -110.274658203125Q4606.994930356741 -122.69639733433723 4622.829905621707 -146.67458071559668Q4638.664880886674 -170.65276409685612 4638.664880886674 -203.73083601891994H4779.110015064478Q4779.110015064478 -150.63495562970638 4759.340157940984 -110.07399477809668Q4739.57030081749 -69.51303392648697 4703.595948852599 -42.42606572806835Q4667.621596887708 -15.339097529649734 4618.308052390814 -1.6695487648248672Q4568.99450789392 12.0 4510.124540373683 12.0Z M5128.37671110034 12.0Q5034.784792155027 12.0 4968.979819647968 -17.45651590079069Q4903.174847140908 -46.91303180158138 4868.483121916652 -107.95651590079069Q4833.791396692395 -169.0 4833.791396692395 -263.2174072265625Q4833.791396692395 -356.84342412650585 4868.061362087727 -417.8086680546403Q4902.331327483058 -478.77391198277473 4967.371034301817 -508.7608913257718Q5032.410741120577 -538.7478706687689 5124.376479700208 -538.7478706687689Q5215.2382430285215 -538.7478706687689 5277.695451013744 -509.4478351101279Q5340.152658998966 -480.14779955148697 5372.109568178654 -420.8695132061839Q5404.066477358341 -361.59122686088085 5404.066477358341 -270.41741359233856V-230.7476806640625H4984.1845427155495Q4986.236720874906 -184.48700641095638 5002.545586362481 -153.95675367116928Q5018.854451850057 -123.42650093138218 5050.650323748589 -108.8048716634512Q5082.4461956471205 -94.18324239552021 5129.750652804971 -94.18324239552021Q5153.568130090833 -94.18324239552021 5176.024781860411 -99.87018617987633Q5198.48143362999 -105.55712996423244 5216.398955494165 -116.83967497199774Q5234.316477358341 -128.12221997976303 5245.290490709245 -145.1655751094222Q5256.264504060149 -162.20893023908138 5257.203672707081 -184.76527258753777H5402.727284297347Q5402.727284297347 -138.28715182840824 5383.266245953739 -101.58281302452087Q5363.80520761013 -64.8784742206335 5327.491826578975 -39.682767912745476Q5291.178445547819 -14.487061604857445 5240.669228710234 -1.2435308024287224Q5190.160011872649 12.0 5128.37671110034 12.0ZM4985.341023057699 -321.06102135777473H5251.638514757156Q5251.638514757156 -349.85203698277473 5242.4123519063 -370.6823252812028Q5233.186189055443 -391.51261357963085 5216.486040450633 -405.3255880624056Q5199.785891845822 -419.1385625451803 5177.05092613399 -425.6168271303177Q5154.315960422158 -432.09509171545506 5126.915786340833 -432.09509171545506Q5084.506904929876 -432.09509171545506 5054.219761058688 -419.6429501771927Q5023.9326171875 -407.1908086389303 5007.071600608528 -382.44747526943684Q4990.210584029555 -357.70414189994335 4985.341023057699 -321.06102135777473Z M5481.921740189195 182.60056045651436V-526.7478706687689H5601.053507134318L5613.288438349962 -450.9823263436556H5620.775430962443Q5651.784450367093 -497.252197265625 5698.141248092055 -518.0000339671969Q5744.498045817018 -538.7478706687689 5800.176554009318 -538.7478706687689Q5872.368259593844 -538.7478706687689 5925.229526683688 -509.19567181169987Q5978.090793773532 -479.64347295463085 6007.31278500706 -418.5782534405589Q6036.534776240587 -357.51303392648697 6036.534776240587 -262.9304878562689Q6036.534776240587 -169.4174539297819 6007.234544835985 -108.26092582195997Q5977.934313431382 -47.10439771413803 5926.16869533062 -17.552198857069016Q5874.403077229857 12.0 5806.280815854669 12.0Q5770.141736373305 12.0 5737.745950452983 4.078274138271809Q5705.350164532661 -3.8434517234563828 5679.193440049887 -20.17822265625Q5653.036715567112 -36.51299358904362 5634.549600884318 -60.92172533273697H5627.845201045275V182.60056045651436ZM5757.915284261107 -106.35743567347527Q5802.880506962538 -106.35743567347527 5831.463216498494 -123.2530517578125Q5860.0459260344505 -140.14866784214973 5873.789510972798 -172.913681961596Q5887.533095911145 -205.6786960810423 5887.533095911145 -253.09559273719788V-272.84364384412766Q5887.533095911145 -321.13010147213936 5873.789510972798 -354.12988387048244Q5860.0459260344505 -387.12966626882553 5831.15016028285 -403.7600506320596Q5802.25439453125 -420.3904349952936 5757.28917182982 -420.3904349952936Q5714.202095359564 -420.3904349952936 5685.08458198607 -402.4861519187689Q5655.9670686125755 -384.58186884224415 5641.57568359375 -351.0124925673008Q5627.1842985749245 -317.44311629235744 5627.1842985749245 -270.0782757252455V-257.1130901873112Q5627.1842985749245 -222.13075004518032 5635.332173489034 -194.0743944272399Q5643.480048403144 -166.01803880929947 5659.849698007107 -146.63987877964973Q5676.21934761107 -127.26171875 5700.74987898767 -116.80957721173763Q5725.28041036427 -106.35743567347527 5757.915284261107 -106.35743567347527Z M6302.333699896932 12.0Q6247.863730251789 12.0 6213.511116884649 -5.012904956936836Q6179.1585035175085 -22.025809913873672 6163.158198341727 -55.3042321279645Q6147.157893165946 -88.58265434205532 6147.157893165946 -136.82705502212048V-416.4254150390625H6067.174263328314V-526.7478706687689H6151.644953712821L6180.175810962915 -678.7655581235886H6293.081354022026V-526.7478706687689H6408.3175887316465V-416.4254150390625H6293.081354022026V-158.50599735975266Q6293.081354022026 -129.23596297204494 6305.472771950066 -113.77920930087566Q6317.864189878106 -98.32245562970638 6351.864909559488 -98.32245562970638H6408.3175887316465V-4.8348388671875Q6395.934856906533 -0.30437542498111725 6376.982409663498 3.569559909403324Q6358.029962420464 7.4434952437877655 6338.129714034498 9.721747621893883Q6318.229465648532 12.0 6302.333699896932 12.0Z"/></g></svg></a>
+  <ul>
+    <li><a href="#problem">I · Problem</a></li>
+    <li><a href="#process">II · Process</a></li>
+    <li><a href="#solution">III · Solution</a></li>
+    <li><a class="cta" href="#talk">Talk to us</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="hero">
+  <div class="copy">
+    <div class="eyebrow" style="color:var(--leak)">Operating systems for founder-led businesses</div>
+    <h1>The systems a business runs on.</h1>
+    <p class="lede">We build the revenue, project and field systems a business runs on — from the first enquiry to the last handover. On Zoho where it fits. Custom-built where it doesn't. Solar and EPC is where we've gone deepest.</p>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+      <a class="btn btn-leak" href="#process">See what we built for a 400 MW developer <span class="mono">→</span></a>
+      <a class="btn btn-ghost" href="#talk">Talk to us</a>
+    </div>
+    <div class="trust">Trusted by a 400+ MW EPC and RESCO developer in Delhi to run its sales and project operations.</div>
+    <div class="follow"><span>↓</span>Follow one lead down the page</div>
+  </div>
+  <div class="hero-draw" id="heroDraw">
+    <div class="mono" style="position:absolute;left:24px;top:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)">One lead · Tuesday, 21:04</div>
+    <div class="rail" style="left:280px;top:40px;height:480px;transform:none"></div>
+    <div class="road" id="road0" style="left:280px;top:40px;background:var(--leak);transform:none"></div>
+    <div class="st" style="left:280px;top:40px">0</div>
+    <div class="mono" style="position:absolute;left:320px;top:48px;font-size:12px;color:var(--ink-2)">Enquiry arrives on IndiaMART</div>
+    <div style="position:absolute;left:320px;top:68px;font-size:14px;color:var(--ink-3);max-width:220px;line-height:1.4">Paid for. A real buyer. A real rooftop.</div>
+    <div class="tok" id="tok0" style="left:280px;top:78px;background:var(--leak);box-shadow:0 0 0 2px var(--leak);opacity:1"></div>
+    <div class="mono" style="position:absolute;right:calc(100% - 256px);top:300px;width:160px;text-align:right;font-size:11px;line-height:16px;color:var(--ink-3)">What happens next is the whole business.</div>
+    <div class="fade"></div>
+  </div>
+</section>
+
+<!-- ============ ACT I — PROBLEM ============ -->
+<section id="problem" style="padding-top:24px">
+  <div class="act-head">
+    <span class="n" style="color:var(--leak)">I</span>
+    <h2 class="disp">The problem. A serious business rarely runs short of leads. It runs short of <span class="hl hl-red">system</span>.</h2>
+  </div>
+  <div class="road-wrap" style="height:1180px" data-act="1">
+    <div class="rail" style="height:1180px"></div>
+    <div class="road" id="road1" style="background:var(--leak)"></div>
+
+    <div class="st" id="s1" style="top:60px">1</div>
+    <div class="side l" style="top:52px"><div class="k">FIRST CONTACT</div><div class="t cap" id="c1">The 9pm enquiry gets answered the <span class="hl hl-red">next afternoon</span> — after two other vendors already have.</div></div>
+    <div class="callout r cap" id="l1" style="top:60px">LEAK A · 21:04 → 12:30<br><span>15 hours. Lead gone to the vendor who replied in four minutes.</span></div>
+
+    <div class="st" id="s2" style="top:320px">2</div>
+    <div class="side r cap" id="c2" style="top:316px"><div class="k">THE QUOTE</div><div class="t">The quote goes out on day four and gets <span class="hl hl-red">one follow-up</span> call. Then silence. The buyer, confused about the subsidy, signs with whoever explained it.</div></div>
+    <div class="callout l cap" id="l2" style="top:320px">LEAK B · DAY 4 → DAY 34<br><span>Lost on touch two. Marked "price". It wasn't price.</span></div>
+
+    <div class="st" id="s3" style="top:580px">3</div>
+    <div class="side l" style="top:572px"><div class="k">HANDOVER</div><div class="t cap" id="c3">The order lives in the <span class="hl hl-red">salesman's head</span> when the project team takes over. Ops starts from a blank sheet and re-asks the customer everything.</div></div>
+    <div class="callout r cap" id="l3" style="top:580px">LEAK C · DAY 0 → DAY 4<br><span>First impression of delivery: chaos.</span></div>
+
+    <div class="st" id="s4" style="top:840px">4</div>
+    <div class="side r cap" id="c4" style="top:836px"><div class="k">EXECUTION &amp; BILLING</div><div class="t">The <span class="hl hl-red">DISCOM approval</span> stuck for three weeks that nobody knew about until the customer called. The milestone <span class="hl hl-red">invoice</span> raised fifty days late. The <span class="hl hl-red">retention</span> never billed at all.</div></div>
+    <div class="callout l cap" id="l4" style="top:840px">LEAK D · DAY 41 → DAY 150<br><span>Work done. Money missing.</span></div>
+
+    <div class="tok" id="tok1" style="top:0;background:var(--leak);box-shadow:0 0 0 2px var(--leak)"></div>
+
+    <div class="sum cap" id="sum1" style="top:1060px">
+      <span class="disp" style="font-size:48px;letter-spacing:-.025em;color:var(--leak);line-height:1">Crores a year</span>
+      <span style="font-size:17px;color:var(--ink-2);max-width:520px;line-height:1.5;text-align:left">Each gap is small. Together they are the difference between the business you have and the one you should have — same team, same <span class="hl hl-red">leads</span>, same ad spend. <span class="mono" style="font-size:11px;color:var(--ink-3)">The audit puts your number on it.</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT II — PROCESS ============ -->
+<section id="process" style="padding-top:40px">
+  <div class="act-head">
+    <span class="n" style="color:var(--signal)">II</span>
+    <h2 class="disp">The process. The same lead, the same road — with a system running through it.</h2>
+  </div>
+  <p style="margin:0 0 24px 76px;font-size:17px;line-height:1.5;color:var(--ink-2);max-width:800px">This is what runs today at a 400+ MW EPC and RESCO developer in Delhi, built in the order the problems showed up. Three layers assemble around the road as you scroll.</p>
+  <div class="road-wrap" style="height:1260px" data-act="2">
+    <div class="rail" style="height:1260px"></div>
+    <div class="road" id="road2" style="background:var(--signal)"></div>
+
+    <div class="band lyr" id="ly1" style="top:20px;height:380px"></div>
+    <div class="band-t lyr" id="ly1t" style="top:32px">Layer 1 · Revenue · Zoho CRM · Phase 1</div>
+
+    <div class="st" id="p1" style="top:80px">1</div>
+    <div class="side l" style="top:72px"><div class="k" style="color:var(--signal-text)">FIRST CONTACT · 21:05</div><div class="t cap" id="d1" style="font-size:16px">Captured into Zoho <span class="hl hl-green">in seconds</span>, deduplicated, source-tagged. The prospect gets a WhatsApp reply with a name, a sizing question and a slot for tomorrow. Routed to the right rep by city and system size.</div></div>
+
+    <div class="st" id="p2" style="top:270px">2</div>
+    <div class="side r cap" id="d2" style="top:266px"><div class="k" style="color:var(--signal-text)">THE QUOTE · DAY 1 → DAY 14</div><div class="t" style="font-size:16px">Proposal generated from a template the same day — sizing, subsidy, payback, filled from the CRM. The <span class="hl hl-green">cadence</span> fires: a subsidy explainer on day 3, a call on day 6, a site visit on day 10. Order signed on <span class="hl hl-green">touch five</span>. The dashboard logs it.</div></div>
+
+    <div class="band lyr" id="ly2" style="top:430px;height:440px;border:2px solid var(--signal);background:var(--ink)"></div>
+    <div class="band-t lyr" id="ly2t" style="top:442px;color:var(--signal-on-ink)">Layer 2 · Operations · Custom-built · Phase 2</div>
+
+    <div class="st" id="p3" style="top:500px;border-color:var(--signal-on-ink);background:var(--ink);color:var(--paper)">3</div>
+    <div class="side l" style="top:492px"><div class="k" style="color:var(--signal-on-ink)">HANDOVER · DAY 0</div><div class="t cap" id="d3" style="font-size:16px;color:var(--panel-text)">Project <span class="hl hl-light">auto-created</span> from the deal — site, sizing, price, contacts carried over. Ops picks up a <span class="hl hl-light">complete brief</span>. Zoho's project module couldn't model this, so we built a platform that could: survey → design → procurement → inventory → SCM → execution → QA/QC → finance → handover.</div></div>
+
+    <div class="st" id="p4" style="top:700px;border-color:var(--signal-on-ink);background:var(--ink);color:var(--paper)">4</div>
+    <div class="side r cap" id="d4" style="top:696px"><div class="k" style="color:var(--signal-on-ink)">EXECUTION &amp; BILLING · DAY 12 → DAY 83</div><div class="t" style="font-size:16px;color:var(--panel-text)"><span class="hl hl-light">DISCOM delay</span> flagged on day 12 on the CEO dashboard, not day 41. A project-health score names what's blocked, by how many days, and why. QA sign-off triggers the milestone <span class="hl hl-light">invoice</span> automatically. Paid. <span class="hl hl-light">Retention</span> scheduled. Everyone from the site engineer to the CEO sees their own view of it.</div></div>
+
+    <div class="band lyr" id="ly3" style="top:900px;height:220px"></div>
+    <div class="band-t lyr" id="ly3t" style="top:912px">Layer 3 · Field · Mobile apps · Phase 3</div>
+
+    <div class="st" id="p5" style="top:970px">5</div>
+    <div class="side l" style="top:962px"><div class="k" style="color:var(--signal-text)">ON THE ROOF</div><div class="t cap" id="d5" style="font-size:16px">Survey and execution teams aren't at desks. Site data — surveys, progress, photos, sign-offs — captured on the roof, in the platform the same minute. Not in a WhatsApp group nobody can search.</div></div>
+    <div class="side r cap mono" id="d5b" style="top:966px;font-size:12px;line-height:17px;color:var(--signal-text)">Offline where the signal isn't. Feeds Layer 2 directly.</div>
+
+    <div class="tok" id="tok2" style="top:0;background:var(--signal);box-shadow:0 0 0 2px var(--signal)"></div>
+
+    <div class="sum cap" id="sum2" style="top:1160px;flex-direction:column;gap:10px;align-items:center">
+      <span class="disp" style="font-size:clamp(28px,3.5vw,40px);letter-spacing:-.025em;color:var(--signal-text);line-height:1">In pipeline. Delivered. Collected. Referred.</span>
+      <span style="font-size:15px;line-height:1.5;color:var(--ink-3);max-width:620px;font-style:italic">The 400+ megawatts are the client's achievement, not ours. What we're proud of is that a developer with that much at stake trusted us to build the systems it runs on — and kept us on to keep building.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT III — SOLUTION ============ -->
+<section id="solution" style="padding-top:40px">
+  <div class="act-head">
+    <span class="n" style="color:var(--ink)">III</span>
+    <h2 class="disp">The solution. We start with the numbers, not a pitch.</h2>
+  </div>
+  <div class="road-wrap" style="height:720px" data-act="3">
+    <div class="rail" style="height:720px"></div>
+    <div class="road" id="road3" style="background:var(--ink)"></div>
+
+    <div class="card" id="m1" style="top:60px;border-color:var(--leak)"><span><b>Audit</b><br><small>1–2 weeks · fixed fee</small></span><span class="tag" style="color:var(--leak)">YOUR LEAK, IN ₹</span></div>
+    <div class="side r cap" id="e1" style="top:56px;width:440px"><div class="t" style="font-size:16px">We trace every lead from first enquiry to signed order and show, in rupees, exactly where pipeline is lost to process rather than to bad leads. Presented live, with your numbers. You keep the findings either way.</div></div>
+    <div class="side l cap mono" id="e1b" style="top:60px;width:440px;font-size:12px;line-height:17px;color:var(--ink-3)">Already know where the leak is?<br>Then we skip to scoping the fix.</div>
+
+    <div class="card" id="m2" style="top:280px"><span><b>Build</b><br><small>fixed scope · fixed fee</small></span><span class="tag">THE FIXES</span></div>
+    <div class="side l cap" id="e2" style="top:276px;width:440px"><div class="t" style="font-size:16px">The fixes from the audit, built — on Zoho or HubSpot where they fit, custom where they don't. Fixed scope, fixed fee, no surprises. Your team trained on what changed.</div></div>
+    <div class="side r cap mono" id="e2b" style="top:280px;width:300px;font-size:12px;line-height:17px;color:var(--leak)">The audit fee is credited here.</div>
+
+    <div class="card" id="m3" style="top:500px;background:var(--ink);color:var(--paper)"><span><b>Managed</b><br><small style="color:var(--panel-text)">monthly · ongoing</small></span><span class="tag" style="color:var(--panel-text)">SEALED</span></div>
+    <div class="side r cap" id="e3" style="top:496px;width:440px"><div class="t" style="font-size:16px">Systems drift as businesses grow. We stay on — a monthly engagement that keeps the leaks sealed, onboards new sources, and keeps building as you do.</div></div>
+
+    <div class="tok" id="tok3" style="top:0;background:var(--ink);box-shadow:0 0 0 2px var(--ink)"></div>
+
+    <div class="sum cap" id="sum3" style="top:640px;gap:40px;font-size:14px;color:var(--ink-2)">
+      <span><b style="color:var(--ink)">We'll say no.</b> A small problem gets told, not sold.</span>
+      <span><b style="color:var(--ink)">You own everything.</b> CRM, data, code.</span>
+      <span><b style="color:var(--ink)">Numbers stay conservative.</b> We'd rather under-promise.</span>
+    </div>
+  </div>
+  <div class="mono" style="font-size:12px;color:var(--ink-3);text-align:center;padding:24px 0 0">The method transfers. Solar is where we started.</div>
+</section>
+
+<!-- ============ WHO ============ -->
+<section id="who" class="two" style="padding:96px 0 80px;border-top:var(--hair) solid var(--ink);margin-top:64px">
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <div class="eyebrow" style="color:var(--ink-3)">Who</div>
+    <h2 class="disp" style="font-size:clamp(28px,3.4vw,38px)">Nineteen years of building the systems businesses run on.</h2>
+    <p style="font-size:17px;color:var(--ink-2)">Techpercept is led by Zuber, who has spent nineteen years on the unglamorous side of technology: the CRM and ERP implementations, the integrations that have to hold at 2am, the mobile apps used by people who've never opened a laptop.</p>
+    <p style="font-size:17px;color:var(--ink-2)">The pattern has been the same — the tool is rarely the problem; the system around it is. We work with a small number of founder-led solar and EPC businesses, where the founder is the buyer and a leaking pipeline is felt personally. We build with modern AI-assisted tooling and say so.</p>
+  </div>
+  <div class="facts">
+    <div><span class="v">19 years</span><span class="k">Software, CRM/ERP, IoT, mobile</span></div>
+    <div><span class="v">PMP</span><span class="k">Certified project management</span></div>
+    <div><span class="v" style="color:var(--signal-text)">400+ MW</span><span class="k">The developer we build for</span></div>
+  </div>
+</section>
+
+<!-- ============ TALK ============ -->
+<section id="talk" class="two" style="padding:0 0 96px">
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <div class="eyebrow" style="color:var(--leak)">Talk</div>
+    <h2 class="disp" style="font-size:clamp(28px,3.4vw,38px)">Tell us where it hurts. We'll tell you if we can help — and if we can't.</h2>
+    <p style="font-size:17px;color:var(--ink-2)">Twenty minutes. No deck. We'll ask six questions about your leads, your projects and what happens at 9pm, and you'll leave knowing whether an audit is worth your time.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;padding-top:22px;border-top:var(--hair) solid var(--rule);font-size:15px;color:var(--ink-2)">
+      <div>Prefer to pick a time? <a id="calLink" href="#" style="font-weight:600">Open the calendar →</a></div>
+      <div class="mono" style="font-size:13px;color:var(--ink-3)">WhatsApp · <span id="waNum">[NUMBER]</span> &nbsp;·&nbsp; <span id="emailAddr">[EMAIL]</span></div>
+      <div class="mono" style="font-size:13px;color:var(--ink-3)">Based in India. Working with clients across India and the Gulf.</div>
+    </div>
+  </div>
+  <form id="leadForm" method="POST" action="#">
+    <label>Name<input type="text" name="Last Name" required placeholder="Your name"></label>
+    <label>Company<input type="text" name="Company" required placeholder="Company name"></label>
+    <label>Email<input type="email" name="Email" required placeholder="you@company.com"></label>
+    <label>WhatsApp<input type="tel" name="Phone" placeholder="+91"></label>
+    <label>What's leaking?<select name="Description"><option>Leads aren't followed up fast enough</option><option>Enquiries scattered across phones and WhatsApp</option><option>No visibility into pipeline or projects</option><option>Our tools don't talk to each other</option><option>Projects get chaotic once we win them</option><option>Not sure — that's the problem</option></select></label>
+    <button type="submit">Book a call</button>
+    <div id="formNote" class="mono" style="font-size:12px;color:var(--ink-3)"></div>
+  </form>
+</section>
+
+<footer>
+  <span>© <span id="yr"></span> Techpercept · The systems a business runs on.</span>
+  <span>Zoho · HubSpot · WhatsApp Business · Custom builds</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  /* ===== CONFIG — fill before launch ===== */
+  var ZOHO_WEBTOLEAD_URL = "";          /* Zoho CRM → Web-to-Lead form action URL */
+  var CALENDLY_URL = "";                /* e.g. https://calendly.com/you/20min */
+  var WHATSAPP = "";                    /* e.g. +91 98xxx xxxxx */
+  var EMAIL = "";                       /* e.g. hello@techpercept.com */
+  /* ======================================= */
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  if (CALENDLY_URL) { var c = document.getElementById('calLink'); c.href = CALENDLY_URL; c.target = '_blank'; c.rel = 'noopener'; }
+  if (WHATSAPP) document.getElementById('waNum').textContent = WHATSAPP;
+  if (EMAIL) document.getElementById('emailAddr').textContent = EMAIL;
+  var form = document.getElementById('leadForm');
+  if (ZOHO_WEBTOLEAD_URL) form.action = ZOHO_WEBTOLEAD_URL;
+  form.addEventListener('submit', function(e){
+    if (!ZOHO_WEBTOLEAD_URL) { e.preventDefault(); document.getElementById('formNote').textContent = 'Form not connected yet — set ZOHO_WEBTOLEAD_URL in the config block.'; }
+  });
+
+  /* ===== The road ===== */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mobile = window.matchMedia('(max-width: 1100px)').matches;
+  function q(id){ return document.getElementById(id); }
+  function on(id){ var e = q(id); if (e) e.classList.add('on'); }
+  function st(id, bg, bd, fg){ var e = q(id); if (!e) return; e.style.background = bg; e.style.borderColor = bd; if (fg) e.style.color = fg; }
+  function tok(id, top, op){ var e = q(id); if (!e) return; e.style.top = top + 'px'; if (op !== undefined) e.style.opacity = op; }
+  function road(id, h){ var e = q(id); if (e) e.style.height = h + 'px'; }
+  function wait(ms, fn){ setTimeout(fn, reduce ? 0 : ms); }
+  var P='var(--paper-raised)', I='var(--ink)', L='var(--leak)', S='var(--signal)', SI='var(--signal-on-ink)';
+
+  function hero(){ road('road0', 480); tok('tok0', 480); }
+  function act1(){
+    tok('tok1', 0, 1);
+    wait(100,  function(){ road('road1', 84);  tok('tok1', 74); });
+    wait(1200, function(){ st('s1',P,L,L); on('c1'); on('l1'); });
+    wait(2000, function(){ road('road1', 344); tok('tok1', 334); });
+    wait(3100, function(){ st('s2',P,L,L); on('c2'); on('l2'); });
+    wait(3900, function(){ road('road1', 604); tok('tok1', 594); });
+    wait(5000, function(){ st('s3',P,L,L); on('c3'); on('l3'); });
+    wait(5800, function(){ road('road1', 864); tok('tok1', 854); });
+    wait(6900, function(){ st('s4',L,L,'var(--paper)'); on('c4'); on('l4'); });
+    wait(7600, function(){ road('road1', 1040); tok('tok1', 1040); });
+    wait(8700, function(){ tok('tok1', 1090, 0); on('sum1'); });
+  }
+  function act2(){
+    tok('tok2', 0, 1);
+    wait(100,  function(){ on('ly1'); on('ly1t'); road('road2', 104); tok('tok2', 94); });
+    wait(1200, function(){ st('p1',S,S,I); on('d1'); });
+    wait(2000, function(){ road('road2', 294); tok('tok2', 284); });
+    wait(3100, function(){ st('p2',S,S,I); on('d2'); });
+    wait(3700, function(){ on('ly2'); on('ly2t'); });
+    wait(4200, function(){ road('road2', 524); tok('tok2', 514); });
+    wait(5300, function(){ st('p3',SI,SI,I); on('d3'); });
+    wait(6100, function(){ road('road2', 724); tok('tok2', 714); });
+    wait(7200, function(){ st('p4',SI,SI,I); on('d4'); });
+    wait(7800, function(){ on('ly3'); on('ly3t'); });
+    wait(8300, function(){ road('road2', 994); tok('tok2', 984); });
+    wait(9400, function(){ st('p5',S,S,I); on('d5'); on('d5b'); });
+    wait(10200,function(){ road('road2', 1140); tok('tok2', 1130); });
+    wait(11300,function(){ on('sum2'); });
+  }
+  function act3(){
+    tok('tok3', 0, 1);
+    wait(100,  function(){ road('road3', 106); tok('tok3', 96); });
+    wait(1200, function(){ on('e1'); on('e1b'); });
+    wait(2000, function(){ road('road3', 326); tok('tok3', 316); });
+    wait(3100, function(){ var m = q('m2'); if (m) m.style.borderColor = L; on('e2'); on('e2b'); });
+    wait(3900, function(){ road('road3', 546); tok('tok3', 536); });
+    wait(5000, function(){ on('e3'); });
+    wait(5600, function(){ road('road3', 640); tok('tok3', 630, 0); on('sum3'); });
+  }
+
+  if (mobile) {
+    /* No road on narrow screens: show every caption, light every station state immediately */
+    document.querySelectorAll('.cap,.lyr,.hl').forEach(function(e){ e.classList.add('on'); });
+  } else {
+    var fired = {};
+    function arm(id, fn, thr){
+      var el = q(id); if (!el) return;
+      if (!('IntersectionObserver' in window)) { fn(); return; }
+      var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting && !fired[id]) { fired[id] = true; fn(); io.disconnect(); } }); }, { threshold: thr });
+      io.observe(el);
+    }
+    wait(400, hero);
+    arm('problem', act1, 0.15);
+    arm('process', act2, 0.12);
+    arm('solution', act3, 0.2);
+    document.querySelectorAll('.hl').forEach(function(el){
+      if (el.closest('.cap')) return;
+      if (!('IntersectionObserver' in window)) { el.classList.add('on'); return; }
+      var o = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting) { el.classList.add('on'); o.disconnect(); } }); }, { threshold: 0.6 });
+      o.observe(el);
+    });
+  }
+})();
+</script>
+</body>
+</html>

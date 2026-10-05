@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Techpercept — The systems a business runs on</title>
+<meta name="description" content="Techpercept builds the revenue, project and field systems a founder-led business runs on — from the first enquiry to the last handover. On Zoho where it fits, custom-built where it doesn't. Solar and EPC is where we've gone deepest.">
+<meta property="og:title" content="Techpercept — The systems a business runs on">
+<meta property="og:description" content="Revenue, project and field systems for founder-led businesses. Trusted by a 400+ MW solar developer in Delhi.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,__MARK_B64__">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@110,700;125,800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Techpercept design system — tokens (Paper theme) ===== */
+:root{
+  --paper:#F2F1ED; --paper-raised:#F7F6F3;
+  --ink:#161A1F; --ink-2:#3A4049; --ink-3:#8A9099; --rule:#C9CCD1;
+  --leak:#B5412A; --signal:#5FD39A; --signal-text:#2E7D5B; --signal-soft:rgba(95,211,154,.07); --signal-on-ink:#7FD4A8; --panel-text:#D9DCE0;
+  --display:"Archivo","Arial Narrow",Impact,sans-serif; --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+  --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:64px; --s6:112px; --station-gap:260px;
+  --hair:1px; --drawn:2px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--leak)}a:hover{color:#8E3220}
+.wrap{width:100%;max-width:1400px;margin:0 auto;padding:0 var(--s5)}
+.mono{font-family:var(--mono)}
+.disp{font-family:var(--display);font-stretch:110%;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";display:inline-block;width:40px;height:1px;background:currentColor}
+.btn{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:600;font-size:16px;padding:18px 26px}
+.btn-leak{background:var(--leak);color:var(--paper)}.btn-leak:hover{background:#8E3220;color:var(--paper)}
+.btn-ghost{color:var(--ink);padding:18px 8px}.btn-ghost:hover{color:var(--ink)}
+
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;height:80px;border-bottom:var(--hair) solid var(--ink)}
+nav .wm{display:block;height:22px;width:auto}
+nav .wm svg{height:22px;width:auto;display:block}
+nav ul{display:flex;gap:36px;align-items:center;list-style:none;font-family:var(--mono);font-size:13px}
+nav ul a{color:var(--ink);text-decoration:none}nav ul a:hover{color:var(--leak)}
+nav ul a.cta{font-weight:600;border:1.5px solid var(--ink);padding:10px 18px;font-family:var(--sans);font-size:14px}
+nav ul a.cta:hover{background:var(--ink);color:var(--paper)}
+@media(max-width:820px){nav ul li:not(:last-child){display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(480px,100%),1fr));gap:56px;padding:88px 0 0;align-items:start}
+.hero .copy{display:flex;flex-direction:column;gap:32px;padding-top:40px}
+.hero h1{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:clamp(48px,7vw,84px);line-height:.96;letter-spacing:-.035em}
+.hero .lede{font-size:20px;line-height:1.5;max-width:560px;color:var(--ink-2)}
+.hero .trust{font-family:var(--mono);font-size:13px;color:var(--ink-3);border-top:var(--hair) solid var(--rule);padding-top:20px;max-width:560px}
+.hero .follow{font-family:var(--mono);font-size:12px;color:var(--leak);display:flex;align-items:center;gap:10px}
+.hero-draw{position:relative;width:560px;height:520px;max-width:100%}
+.fade{position:absolute;left:0;bottom:0;width:100%;height:80px;background:linear-gradient(to bottom,rgba(242,241,237,0),var(--paper))}
+
+/* road */
+.road-wrap{position:relative;width:1272px;max-width:100%}
+.rail{position:absolute;left:50%;top:0;width:2px;transform:translateX(-50%);background:var(--rule)}
+.road{position:absolute;left:50%;top:0;width:2px;height:0;transform:translateX(-50%);transition:height 1.1s cubic-bezier(.4,0,.2,1)}
+.st{position:absolute;left:50%;transform:translateX(-50%);width:48px;height:48px;border-radius:50%;border:var(--drawn) solid var(--ink);background:var(--paper-raised);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700;transition:background .5s,border-color .5s,color .5s}
+.tok{position:absolute;left:50%;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;border:3px solid var(--paper);opacity:0;transition:top 1.1s cubic-bezier(.4,0,.2,1),opacity .5s}
+.cap{opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
+.cap.on{opacity:1;transform:none}
+.lyr{opacity:0;transform:translateX(-14px);transition:opacity .7s,transform .7s}
+.lyr.on{opacity:1;transform:none}
+.side{position:absolute;width:480px;display:flex;flex-direction:column;gap:8px}
+.side.l{right:calc(50% + 76px);text-align:right;align-items:flex-end}
+.side.r{left:calc(50% + 76px)}
+.side .k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-3)}
+.side .t{font-size:17px;line-height:1.5;color:var(--ink-2);max-width:480px}
+.callout{position:absolute;width:300px;padding:12px 14px;background:var(--paper-raised);font-family:var(--mono);font-size:12px;line-height:17px;color:var(--leak)}
+.callout.r{left:calc(50% + 76px);border-left:var(--drawn) solid var(--leak)}
+.callout.l{right:calc(50% + 76px);text-align:right;border-right:var(--drawn) solid var(--leak)}
+.callout span{color:var(--ink-2)}
+.hl{position:relative;display:inline;font-weight:600;color:var(--ink);background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0 2px;transition:background-size .7s cubic-bezier(.4,0,.2,1) .35s,color .4s ease .35s}
+.on .hl,.hl.on{background-size:100% 2px}
+.hl-red{color:var(--leak)}.hl-red.hl{background-image:linear-gradient(var(--leak),var(--leak))}
+.hl-green{color:var(--signal-text)}.hl-green.hl{background-image:linear-gradient(var(--signal),var(--signal))}
+.hl-light{color:var(--signal-on-ink)}.hl-light.hl{background-image:linear-gradient(var(--signal-on-ink),var(--signal-on-ink))}
+
+.act-head{display:flex;align-items:baseline;gap:20px;padding:40px 0 16px;border-top:var(--hair) solid var(--ink)}
+.act-head .n{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:56px;letter-spacing:-.03em;line-height:1}
+.act-head h2{font-size:clamp(26px,3.2vw,36px)}
+.band{position:absolute;left:40px;right:40px;border:1.5px solid var(--signal);background:var(--signal-soft)}
+.band-t{position:absolute;left:60px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--signal-text)}
+.sum{position:absolute;left:0;right:0;display:flex;align-items:baseline;gap:20px;justify-content:center;flex-wrap:wrap;text-align:center;padding:0 var(--s3)}
+.card{position:absolute;left:50%;transform:translateX(-50%);width:152px;height:92px;border:var(--drawn) solid var(--ink);background:var(--paper-raised);padding:14px;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .5s}
+.card b{font-size:16px}.card small{font-size:12.5px;color:var(--ink-2)}.card .tag{font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+
+/* mobile: stack the road's sides */
+@media(max-width:1100px){
+  .road-wrap{height:auto!important}
+  .rail,.road,.st,.tok,.band,.band-t{display:none}
+  .side,.callout,.sum,.card{position:static;width:auto;max-width:none;text-align:left;align-items:flex-start;transform:none;margin-bottom:var(--s3)}
+  .side.l{text-align:left;align-items:flex-start}
+  .callout.l{text-align:left;border-right:0;border-left:var(--drawn) solid var(--leak)}
+  .cap,.lyr{opacity:1;transform:none}
+  .m-stack{display:flex;flex-direction:column;gap:var(--s2);padding:var(--s3) 0}
+  .m-h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding-top:var(--s2);border-top:var(--hair) solid var(--rule)}
+}
+
+/* who / talk */
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(440px,100%),1fr));gap:var(--s5);align-items:start}
+.facts{display:flex;flex-direction:column;border:var(--hair) solid var(--ink);align-self:start}
+.facts div{padding:26px 22px;display:flex;flex-direction:column;gap:6px}
+.facts div+div{border-top:var(--hair) solid var(--ink)}
+.facts .v{font-family:var(--display);font-stretch:110%;font-weight:700;font-size:38px;letter-spacing:-.02em;line-height:1}
+.facts .k{font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+form{display:flex;flex-direction:column;gap:14px;border:var(--hair) solid var(--ink);padding:32px 28px;background:var(--paper-raised)}
+label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600}
+input,select{font-family:inherit;font-size:15px;padding:12px 14px;border:var(--hair) solid var(--ink);background:var(--paper);color:var(--ink);border-radius:0}
+input:focus,select:focus{outline:2px solid var(--leak);outline-offset:1px}
+button{font-family:inherit;font-size:16px;font-weight:600;padding:16px 24px;background:var(--ink);color:var(--paper);border:0;cursor:pointer;align-self:flex-start}
+button:hover{background:var(--leak)}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:28px 0 48px;border-top:var(--hair) solid var(--ink);font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+@media(prefers-reduced-motion:reduce){.road,.st,.tok,.cap,.lyr,.hl,.card{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <a class="wm" href="#top" aria-label="Techpercept"><svg viewBox="__WM_VB__" role="img" aria-hidden="true"><g fill="var(--ink)" transform="__WM_TR__"><path d="__WM_D__"/></g></svg></a>
+  <ul>
+    <li><a href="#problem">I · Problem</a></li>
+    <li><a href="#process">II · Process</a></li>
+    <li><a href="#solution">III · Solution</a></li>
+    <li><a class="cta" href="#talk">Talk to us</a></li>
+  </ul>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="hero">
+  <div class="copy">
+    <div class="eyebrow" style="color:var(--leak)">Operating systems for founder-led businesses</div>
+    <h1>The systems a business runs on.</h1>
+    <p class="lede">We build the revenue, project and field systems a business runs on — from the first enquiry to the last handover. On Zoho where it fits. Custom-built where it doesn't. Solar and EPC is where we've gone deepest.</p>
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+      <a class="btn btn-leak" href="#process">See what we built for a 400 MW developer <span class="mono">→</span></a>
+      <a class="btn btn-ghost" href="#talk">Talk to us</a>
+    </div>
+    <div class="trust">Trusted by a 400+ MW EPC and RESCO developer in Delhi to run its sales and project operations.</div>
+    <div class="follow"><span>↓</span>Follow one lead down the page</div>
+  </div>
+  <div class="hero-draw" id="heroDraw">
+    <div class="mono" style="position:absolute;left:24px;top:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)">One lead · Tuesday, 21:04</div>
+    <div class="rail" style="left:280px;top:40px;height:480px;transform:none"></div>
+    <div class="road" id="road0" style="left:280px;top:40px;background:var(--leak);transform:none"></div>
+    <div class="st" style="left:280px;top:40px">0</div>
+    <div class="mono" style="position:absolute;left:320px;top:48px;font-size:12px;color:var(--ink-2)">Enquiry arrives on IndiaMART</div>
+    <div style="position:absolute;left:320px;top:68px;font-size:14px;color:var(--ink-3);max-width:220px;line-height:1.4">Paid for. A real buyer. A real rooftop.</div>
+    <div class="tok" id="tok0" style="left:280px;top:78px;background:var(--leak);box-shadow:0 0 0 2px var(--leak);opacity:1"></div>
+    <div class="mono" style="position:absolute;right:calc(100% - 256px);top:300px;width:160px;text-align:right;font-size:11px;line-height:16px;color:var(--ink-3)">What happens next is the whole business.</div>
+    <div class="fade"></div>
+  </div>
+</section>
+
+<!-- ============ ACT I — PROBLEM ============ -->
+<section id="problem" style="padding-top:24px">
+  <div class="act-head">
+    <span class="n" style="color:var(--leak)">I</span>
+    <h2 class="disp">The problem. A serious business rarely runs short of leads. It runs short of <span class="hl hl-red">system</span>.</h2>
+  </div>
+  <div class="road-wrap" style="height:1180px" data-act="1">
+    <div class="rail" style="height:1180px"></div>
+    <div class="road" id="road1" style="background:var(--leak)"></div>
+
+    <div class="st" id="s1" style="top:60px">1</div>
+    <div class="side l" style="top:52px"><div class="k">FIRST CONTACT</div><div class="t cap" id="c1">The 9pm enquiry gets answered the <span class="hl hl-red">next afternoon</span> — after two other vendors already have.</div></div>
+    <div class="callout r cap" id="l1" style="top:60px">LEAK A · 21:04 → 12:30<br><span>15 hours. Lead gone to the vendor who replied in four minutes.</span></div>
+
+    <div class="st" id="s2" style="top:320px">2</div>
+    <div class="side r cap" id="c2" style="top:316px"><div class="k">THE QUOTE</div><div class="t">The quote goes out on day four and gets <span class="hl hl-red">one follow-up</span> call. Then silence. The buyer, confused about the subsidy, signs with whoever explained it.</div></div>
+    <div class="callout l cap" id="l2" style="top:320px">LEAK B · DAY 4 → DAY 34<br><span>Lost on touch two. Marked "price". It wasn't price.</span></div>
+
+    <div class="st" id="s3" style="top:580px">3</div>
+    <div class="side l" style="top:572px"><div class="k">HANDOVER</div><div class="t cap" id="c3">The order lives in the <span class="hl hl-red">salesman's head</span> when the project team takes over. Ops starts from a blank sheet and re-asks the customer everything.</div></div>
+    <div class="callout r cap" id="l3" style="top:580px">LEAK C · DAY 0 → DAY 4<br><span>First impression of delivery: chaos.</span></div>
+
+    <div class="st" id="s4" style="top:840px">4</div>
+    <div class="side r cap" id="c4" style="top:836px"><div class="k">EXECUTION &amp; BILLING</div><div class="t">The <span class="hl hl-red">DISCOM approval</span> stuck for three weeks that nobody knew about until the customer called. The milestone <span class="hl hl-red">invoice</span> raised fifty days late. The <span class="hl hl-red">retention</span> never billed at all.</div></div>
+    <div class="callout l cap" id="l4" style="top:840px">LEAK D · DAY 41 → DAY 150<br><span>Work done. Money missing.</span></div>
+
+    <div class="tok" id="tok1" style="top:0;background:var(--leak);box-shadow:0 0 0 2px var(--leak)"></div>
+
+    <div class="sum cap" id="sum1" style="top:1060px">
+      <span class="disp" style="font-size:48px;letter-spacing:-.025em;color:var(--leak);line-height:1">Crores a year</span>
+      <span style="font-size:17px;color:var(--ink-2);max-width:520px;line-height:1.5;text-align:left">Each gap is small. Together they are the difference between the business you have and the one you should have — same team, same <span class="hl hl-red">leads</span>, same ad spend. <span class="mono" style="font-size:11px;color:var(--ink-3)">The audit puts your number on it.</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT II — PROCESS ============ -->
+<section id="process" style="padding-top:40px">
+  <div class="act-head">
+    <span class="n" style="color:var(--signal)">II</span>
+    <h2 class="disp">The process. The same lead, the same road — with a system running through it.</h2>
+  </div>
+  <p style="margin:0 0 24px 76px;font-size:17px;line-height:1.5;color:var(--ink-2);max-width:800px">This is what runs today at a 400+ MW EPC and RESCO developer in Delhi, built in the order the problems showed up. Three layers assemble around the road as you scroll.</p>
+  <div class="road-wrap" style="height:1260px" data-act="2">
+    <div class="rail" style="height:1260px"></div>
+    <div class="road" id="road2" style="background:var(--signal)"></div>
+
+    <div class="band lyr" id="ly1" style="top:20px;height:380px"></div>
+    <div class="band-t lyr" id="ly1t" style="top:32px">Layer 1 · Revenue · Zoho CRM · Phase 1</div>
+
+    <div class="st" id="p1" style="top:80px">1</div>
+    <div class="side l" style="top:72px"><div class="k" style="color:var(--signal-text)">FIRST CONTACT · 21:05</div><div class="t cap" id="d1" style="font-size:16px">Captured into Zoho <span class="hl hl-green">in seconds</span>, deduplicated, source-tagged. The prospect gets a WhatsApp reply with a name, a sizing question and a slot for tomorrow. Routed to the right rep by city and system size.</div></div>
+
+    <div class="st" id="p2" style="top:270px">2</div>
+    <div class="side r cap" id="d2" style="top:266px"><div class="k" style="color:var(--signal-text)">THE QUOTE · DAY 1 → DAY 14</div><div class="t" style="font-size:16px">Proposal generated from a template the same day — sizing, subsidy, payback, filled from the CRM. The <span class="hl hl-green">cadence</span> fires: a subsidy explainer on day 3, a call on day 6, a site visit on day 10. Order signed on <span class="hl hl-green">touch five</span>. The dashboard logs it.</div></div>
+
+    <div class="band lyr" id="ly2" style="top:430px;height:440px;border:2px solid var(--signal);background:var(--ink)"></div>
+    <div class="band-t lyr" id="ly2t" style="top:442px;color:var(--signal-on-ink)">Layer 2 · Operations · Custom-built · Phase 2</div>
+
+    <div class="st" id="p3" style="top:500px;border-color:var(--signal-on-ink);background:var(--ink);color:var(--paper)">3</div>
+    <div class="side l" style="top:492px"><div class="k" style="color:var(--signal-on-ink)">HANDOVER · DAY 0</div><div class="t cap" id="d3" style="font-size:16px;color:var(--panel-text)">Project <span class="hl hl-light">auto-created</span> from the deal — site, sizing, price, contacts carried over. Ops picks up a <span class="hl hl-light">complete brief</span>. Zoho's project module couldn't model this, so we built a platform that could: survey → design → procurement → inventory → SCM → execution → QA/QC → finance → handover.</div></div>
+
+    <div class="st" id="p4" style="top:700px;border-color:var(--signal-on-ink);background:var(--ink);color:var(--paper)">4</div>
+    <div class="side r cap" id="d4" style="top:696px"><div class="k" style="color:var(--signal-on-ink)">EXECUTION &amp; BILLING · DAY 12 → DAY 83</div><div class="t" style="font-size:16px;color:var(--panel-text)"><span class="hl hl-light">DISCOM delay</span> flagged on day 12 on the CEO dashboard, not day 41. A project-health score names what's blocked, by how many days, and why. QA sign-off triggers the milestone <span class="hl hl-light">invoice</span> automatically. Paid. <span class="hl hl-light">Retention</span> scheduled. Everyone from the site engineer to the CEO sees their own view of it.</div></div>
+
+    <div class="band lyr" id="ly3" style="top:900px;height:220px"></div>
+    <div class="band-t lyr" id="ly3t" style="top:912px">Layer 3 · Field · Mobile apps · Phase 3</div>
+
+    <div class="st" id="p5" style="top:970px">5</div>
+    <div class="side l" style="top:962px"><div class="k" style="color:var(--signal-text)">ON THE ROOF</div><div class="t cap" id="d5" style="font-size:16px">Survey and execution teams aren't at desks. Site data — surveys, progress, photos, sign-offs — captured on the roof, in the platform the same minute. Not in a WhatsApp group nobody can search.</div></div>
+    <div class="side r cap mono" id="d5b" style="top:966px;font-size:12px;line-height:17px;color:var(--signal-text)">Offline where the signal isn't. Feeds Layer 2 directly.</div>
+
+    <div class="tok" id="tok2" style="top:0;background:var(--signal);box-shadow:0 0 0 2px var(--signal)"></div>
+
+    <div class="sum cap" id="sum2" style="top:1160px;flex-direction:column;gap:10px;align-items:center">
+      <span class="disp" style="font-size:clamp(28px,3.5vw,40px);letter-spacing:-.025em;color:var(--signal-text);line-height:1">In pipeline. Delivered. Collected. Referred.</span>
+      <span style="font-size:15px;line-height:1.5;color:var(--ink-3);max-width:620px;font-style:italic">The 400+ megawatts are the client's achievement, not ours. What we're proud of is that a developer with that much at stake trusted us to build the systems it runs on — and kept us on to keep building.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT III — SOLUTION ============ -->
+<section id="solution" style="padding-top:40px">
+  <div class="act-head">
+    <span class="n" style="color:var(--ink)">III</span>
+    <h2 class="disp">The solution. We start with the numbers, not a pitch.</h2>
+  </div>
+  <div class="road-wrap" style="height:720px" data-act="3">
+    <div class="rail" style="height:720px"></div>
+    <div class="road" id="road3" style="background:var(--ink)"></div>
+
+    <div class="card" id="m1" style="top:60px;border-color:var(--leak)"><span><b>Audit</b><br><small>1–2 weeks · fixed fee</small></span><span class="tag" style="color:var(--leak)">YOUR LEAK, IN ₹</span></div>
+    <div class="side r cap" id="e1" style="top:56px;width:440px"><div class="t" style="font-size:16px">We trace every lead from first enquiry to signed order and show, in rupees, exactly where pipeline is lost to process rather than to bad leads. Presented live, with your numbers. You keep the findings either way.</div></div>
+    <div class="side l cap mono" id="e1b" style="top:60px;width:440px;font-size:12px;line-height:17px;color:var(--ink-3)">Already know where the leak is?<br>Then we skip to scoping the fix.</div>
+
+    <div class="card" id="m2" style="top:280px"><span><b>Build</b><br><small>fixed scope · fixed fee</small></span><span class="tag">THE FIXES</span></div>
+    <div class="side l cap" id="e2" style="top:276px;width:440px"><div class="t" style="font-size:16px">The fixes from the audit, built — on Zoho or HubSpot where they fit, custom where they don't. Fixed scope, fixed fee, no surprises. Your team trained on what changed.</div></div>
+    <div class="side r cap mono" id="e2b" style="top:280px;width:300px;font-size:12px;line-height:17px;color:var(--leak)">The audit fee is credited here.</div>
+
+    <div class="card" id="m3" style="top:500px;background:var(--ink);color:var(--paper)"><span><b>Managed</b><br><small style="color:var(--panel-text)">monthly · ongoing</small></span><span class="tag" style="color:var(--panel-text)">SEALED</span></div>
+    <div class="side r cap" id="e3" style="top:496px;width:440px"><div class="t" style="font-size:16px">Systems drift as businesses grow. We stay on — a monthly engagement that keeps the leaks sealed, onboards new sources, and keeps building as you do.</div></div>
+
+    <div class="tok" id="tok3" style="top:0;background:var(--ink);box-shadow:0 0 0 2px var(--ink)"></div>
+
+    <div class="sum cap" id="sum3" style="top:640px;gap:40px;font-size:14px;color:var(--ink-2)">
+      <span><b style="color:var(--ink)">We'll say no.</b> A small problem gets told, not sold.</span>
+      <span><b style="color:var(--ink)">You own everything.</b> CRM, data, code.</span>
+      <span><b style="color:var(--ink)">Numbers stay conservative.</b> We'd rather under-promise.</span>
+    </div>
+  </div>
+  <div class="mono" style="font-size:12px;color:var(--ink-3);text-align:center;padding:24px 0 0">The method transfers. Solar is where we started.</div>
+</section>
+
+<!-- ============ WHO ============ -->
+<section id="who" class="two" style="padding:96px 0 80px;border-top:var(--hair) solid var(--ink);margin-top:64px">
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <div class="eyebrow" style="color:var(--ink-3)">Who</div>
+    <h2 class="disp" style="font-size:clamp(28px,3.4vw,38px)">Nineteen years of building the systems businesses run on.</h2>
+    <p style="font-size:17px;color:var(--ink-2)">Techpercept is led by Zuber, who has spent nineteen years on the unglamorous side of technology: the CRM and ERP implementations, the integrations that have to hold at 2am, the mobile apps used by people who've never opened a laptop.</p>
+    <p style="font-size:17px;color:var(--ink-2)">The pattern has been the same — the tool is rarely the problem; the system around it is. We work with a small number of founder-led solar and EPC businesses, where the founder is the buyer and a leaking pipeline is felt personally. We build with modern AI-assisted tooling and say so.</p>
+  </div>
+  <div class="facts">
+    <div><span class="v">19 years</span><span class="k">Software, CRM/ERP, IoT, mobile</span></div>
+    <div><span class="v">PMP</span><span class="k">Certified project management</span></div>
+    <div><span class="v" style="color:var(--signal-text)">400+ MW</span><span class="k">The developer we build for</span></div>
+  </div>
+</section>
+
+<!-- ============ TALK ============ -->
+<section id="talk" class="two" style="padding:0 0 96px">
+  <div style="display:flex;flex-direction:column;gap:22px">
+    <div class="eyebrow" style="color:var(--leak)">Talk</div>
+    <h2 class="disp" style="font-size:clamp(28px,3.4vw,38px)">Tell us where it hurts. We'll tell you if we can help — and if we can't.</h2>
+    <p style="font-size:17px;color:var(--ink-2)">Twenty minutes. No deck. We'll ask six questions about your leads, your projects and what happens at 9pm, and you'll leave knowing whether an audit is worth your time.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px;padding-top:22px;border-top:var(--hair) solid var(--rule);font-size:15px;color:var(--ink-2)">
+      <div>Prefer to pick a time? <a id="calLink" href="#" style="font-weight:600">Open the calendar →</a></div>
+      <div class="mono" style="font-size:13px;color:var(--ink-3)">WhatsApp · <span id="waNum">[NUMBER]</span> &nbsp;·&nbsp; <span id="emailAddr">[EMAIL]</span></div>
+      <div class="mono" style="font-size:13px;color:var(--ink-3)">Based in India. Working with clients across India and the Gulf.</div>
+    </div>
+  </div>
+  <form id="leadForm" method="POST" action="#">
+    <label>Name<input type="text" name="Last Name" required placeholder="Your name"></label>
+    <label>Company<input type="text" name="Company" required placeholder="Company name"></label>
+    <label>Email<input type="email" name="Email" required placeholder="you@company.com"></label>
+    <label>WhatsApp<input type="tel" name="Phone" placeholder="+91"></label>
+    <label>What's leaking?<select name="Description"><option>Leads aren't followed up fast enough</option><option>Enquiries scattered across phones and WhatsApp</option><option>No visibility into pipeline or projects</option><option>Our tools don't talk to each other</option><option>Projects get chaotic once we win them</option><option>Not sure — that's the problem</option></select></label>
+    <button type="submit">Book a call</button>
+    <div id="formNote" class="mono" style="font-size:12px;color:var(--ink-3)"></div>
+  </form>
+</section>
+
+<footer>
+  <span>© <span id="yr"></span> Techpercept · The systems a business runs on.</span>
+  <span>Zoho · HubSpot · WhatsApp Business · Custom builds</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  /* ===== CONFIG — fill before launch ===== */
+  var ZOHO_WEBTOLEAD_URL = "";          /* Zoho CRM → Web-to-Lead form action URL */
+  var CALENDLY_URL = "";                /* e.g. https://calendly.com/you/20min */
+  var WHATSAPP = "";                    /* e.g. +91 98xxx xxxxx */
+  var EMAIL = "";                       /* e.g. hello@techpercept.com */
+  /* ======================================= */
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  if (CALENDLY_URL) { var c = document.getElementById('calLink'); c.href = CALENDLY_URL; c.target = '_blank'; c.rel = 'noopener'; }
+  if (WHATSAPP) document.getElementById('waNum').textContent = WHATSAPP;
+  if (EMAIL) document.getElementById('emailAddr').textContent = EMAIL;
+  var form = document.getElementById('leadForm');
+  if (ZOHO_WEBTOLEAD_URL) form.action = ZOHO_WEBTOLEAD_URL;
+  form.addEventListener('submit', function(e){
+    if (!ZOHO_WEBTOLEAD_URL) { e.preventDefault(); document.getElementById('formNote').textContent = 'Form not connected yet — set ZOHO_WEBTOLEAD_URL in the config block.'; }
+  });
+
+  /* ===== The road ===== */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mobile = window.matchMedia('(max-width: 1100px)').matches;
+  function q(id){ return document.getElementById(id); }
+  function on(id){ var e = q(id); if (e) e.classList.add('on'); }
+  function st(id, bg, bd, fg){ var e = q(id); if (!e) return; e.style.background = bg; e.style.borderColor = bd; if (fg) e.style.color = fg; }
+  function tok(id, top, op){ var e = q(id); if (!e) return; e.style.top = top + 'px'; if (op !== undefined) e.style.opacity = op; }
+  function road(id, h){ var e = q(id); if (e) e.style.height = h + 'px'; }
+  function wait(ms, fn){ setTimeout(fn, reduce ? 0 : ms); }
+  var P='var(--paper-raised)', I='var(--ink)', L='var(--leak)', S='var(--signal)', SI='var(--signal-on-ink)';
+
+  function hero(){ road('road0', 480); tok('tok0', 480); }
+  function act1(){
+    tok('tok1', 0, 1);
+    wait(100,  function(){ road('road1', 84);  tok('tok1', 74); });
+    wait(1200, function(){ st('s1',P,L,L); on('c1'); on('l1'); });
+    wait(2000, function(){ road('road1', 344); tok('tok1', 334); });
+    wait(3100, function(){ st('s2',P,L,L); on('c2'); on('l2'); });
+    wait(3900, function(){ road('road1', 604); tok('tok1', 594); });
+    wait(5000, function(){ st('s3',P,L,L); on('c3'); on('l3'); });
+    wait(5800, function(){ road('road1', 864); tok('tok1', 854); });
+    wait(6900, function(){ st('s4',L,L,'var(--paper)'); on('c4'); on('l4'); });
+    wait(7600, function(){ road('road1', 1040); tok('tok1', 1040); });
+    wait(8700, function(){ tok('tok1', 1090, 0); on('sum1'); });
+  }
+  function act2(){
+    tok('tok2', 0, 1);
+    wait(100,  function(){ on('ly1'); on('ly1t'); road('road2', 104); tok('tok2', 94); });
+    wait(1200, function(){ st('p1',S,S,I); on('d1'); });
+    wait(2000, function(){ road('road2', 294); tok('tok2', 284); });
+    wait(3100, function(){ st('p2',S,S,I); on('d2'); });
+    wait(3700, function(){ on('ly2'); on('ly2t'); });
+    wait(4200, function(){ road('road2', 524); tok('tok2', 514); });
+    wait(5300, function(){ st('p3',SI,SI,I); on('d3'); });
+    wait(6100, function(){ road('road2', 724); tok('tok2', 714); });
+    wait(7200, function(){ st('p4',SI,SI,I); on('d4'); });
+    wait(7800, function(){ on('ly3'); on('ly3t'); });
+    wait(8300, function(){ road('road2', 994); tok('tok2', 984); });
+    wait(9400, function(){ st('p5',S,S,I); on('d5'); on('d5b'); });
+    wait(10200,function(){ road('road2', 1140); tok('tok2', 1130); });
+    wait(11300,function(){ on('sum2'); });
+  }
+  function act3(){
+    tok('tok3', 0, 1);
+    wait(100,  function(){ road('road3', 106); tok('tok3', 96); });
+    wait(1200, function(){ on('e1'); on('e1b'); });
+    wait(2000, function(){ road('road3', 326); tok('tok3', 316); });
+    wait(3100, function(){ var m = q('m2'); if (m) m.style.borderColor = L; on('e2'); on('e2b'); });
+    wait(3900, function(){ road('road3', 546); tok('tok3', 536); });
+    wait(5000, function(){ on('e3'); });
+    wait(5600, function(){ road('road3', 640); tok('tok3', 630, 0); on('sum3'); });
+  }
+
+  if (mobile) {
+    /* No road on narrow screens: show every caption, light every station state immediately */
+    document.querySelectorAll('.cap,.lyr,.hl').forEach(function(e){ e.classList.add('on'); });
+  } else {
+    var fired = {};
+    function arm(id, fn, thr){
+      var el = q(id); if (!el) return;
+      if (!('IntersectionObserver' in window)) { fn(); return; }
+      var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting && !fired[id]) { fired[id] = true; fn(); io.disconnect(); } }); }, { threshold: thr });
+      io.observe(el);
+    }
+    wait(400, hero);
+    arm('problem', act1, 0.15);
+    arm('process', act2, 0.12);
+    arm('solution', act3, 0.2);
+    document.querySelectorAll('.hl').forEach(function(el){
+      if (el.closest('.cap')) return;
+      if (!('IntersectionObserver' in window)) { el.classList.add('on'); return; }
+      var o = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting) { el.classList.add('on'); o.disconnect(); } }); }, { threshold: 0.6 });
+      o.observe(el);
+    });
+  }
+})();
+</script>
+</body>
+</html>

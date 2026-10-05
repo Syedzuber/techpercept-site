@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Techpercept">
+<title>Techpercept</title>
+<rect width="64" height="64" fill="#161A1F"/>
+<rect x="31" y="8" width="2" height="48" fill="#EEEBE4"/>
+<circle cx="32" cy="22" r="6" fill="#161A1F" stroke="#EEEBE4" stroke-width="2"/>
+<circle cx="32" cy="42" r="6" fill="#5FD39A"/>
+</svg>
