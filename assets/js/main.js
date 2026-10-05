@@ -60,23 +60,58 @@
      The viewer is the clock. Each act maps the token's position to how far the
      act has been scrolled; keyframes fire (and un-fire) as the token passes them.
      Scroll fast and it plays fast; stop and it holds; scroll up and it rewinds. */
+  /* ---- Act I: one road, four businesses (copy in TP_SCENARIOS) ---- */
+  var SC = C.SCENARIOS || window.TP_SCENARIOS || [];
+  var cur = SC[0];
+  var A1 = [
+    {y:84,  st:'s1', caps:['c1','l1']}, {y:344, st:'s2', caps:['c2w','l2']},
+    {y:604, st:'s3', caps:['c3','l3']}, {y:864, st:'s4', caps:['c4w','l4']}, {y:860, sum:'sum1'}
+  ];
+  function fire1(k, i){
+    if (k.sum) { on(k.sum); return; }
+    if (cur && cur.ok[i]) st(k.st, P, S, 'var(--signal-text)');
+    else if (i === 3) st(k.st, L, L, 'var(--paper)');
+    else st(k.st, P, L, L);
+    k.caps.forEach(on);
+  }
+  function unfire1(k){ if (k.sum) { off(k.sum); return; } stReset(k.st); k.caps.forEach(off); }
+  function render1(sc){
+    cur = sc; if (!sc) return;
+    var e;
+    if ((e = q('intro1'))) e.innerHTML = sc.intro;
+    for (var i = 0; i < 4; i++) {
+      if ((e = q('k'+(i+1)))) { e.innerHTML = sc.keys[i]; e.style.color = sc.ok[i] ? 'var(--signal-text)' : ''; }
+      if ((e = q('c'+(i+1)))) e.innerHTML = sc.caps[i];
+      if ((e = q('l'+(i+1)))) { e.innerHTML = sc.calls[i][0] + '<br><span>' + sc.calls[i][1] + '</span>'; e.classList.toggle('ok', !!sc.ok[i]); }
+      if ((e = q('s'+(i+1)))) e.textContent = sc.st[i];
+    }
+    if ((e = q('sum1h'))) e.innerHTML = sc.sum[0];
+    if ((e = q('sum1b'))) e.innerHTML = sc.sum[1];
+    if ((e = q('road1'))) e.style.background = sc.ok[0] ? 'linear-gradient(to bottom,var(--signal) 0,var(--signal) 84px,var(--leak) 84px)' : 'var(--leak)';
+    document.querySelectorAll('.chip').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-id') === sc.id ? 'true' : 'false'); });
+    if (mobile || reduce) { document.querySelectorAll('#problem .cap').forEach(function(x){ x.classList.add('on'); }); if (reduce && !mobile) A1.forEach(function(k,i){ k.state = true; fire1(k,i); }); }
+  }
+  function switch1(sc){
+    if (sc === cur) return;
+    var w = q('problem') && q('problem').querySelector('.road-wrap');
+    if (reduce || mobile || !w) { render1(sc); return; }
+    w.classList.add('swap');
+    setTimeout(function(){
+      A1.forEach(function(k){ if (k.state) { k.state = false; unfire1(k); } });
+      render1(sc); w.classList.remove('swap');
+      requestAnimationFrame(tick);   /* the road re-fires to wherever the reader is */
+    }, 260);
+  }
+  var chips = q('chips');
+  if (chips) SC.forEach(function(sc){
+    var b = document.createElement('button'); b.className = 'chip'; b.type = 'button'; b.setAttribute('data-id', sc.id); b.textContent = sc.chip;
+    b.setAttribute('aria-pressed', 'false'); b.addEventListener('click', function(){ switch1(sc); }); chips.appendChild(b);
+  });
+  render1(cur);
+
   var ACTS = [
     { wrap:'problem', road:'road1', tok:'tok1', end:1040, fadeAt:1040,
-      keys:[
-        {y:84,  on:function(){ st('s1',P,L,L); on('c1'); on('l1'); }, offf:function(){ stReset('s1'); off('c1'); off('l1'); }},
-        {y:344, on:function(){ st('s2',P,L,L); on('c2'); on('l2'); }, offf:function(){ stReset('s2'); off('c2'); off('l2'); }},
-        {y:604, on:function(){ st('s3',P,L,L); on('c3'); on('l3'); }, offf:function(){ stReset('s3'); off('c3'); off('l3'); }},
-        {y:864, on:function(){ st('s4',L,L,'var(--paper)'); on('c4'); on('l4'); }, offf:function(){ stReset('s4'); off('c4'); off('l4'); }},
-        {y:860, on:function(){ on('sum1'); }, offf:function(){ off('sum1'); }}
-      ]},
-    { wrap:'bought', road:'road1b', tok:'tok1b', end:960, fadeAt:960,
-      keys:[
-        {y:84,  on:function(){ st('b1',P,S,'var(--signal-text)'); on('bc1'); on('bl1'); }, offf:function(){ stReset('b1'); off('bc1'); off('bl1'); }},
-        {y:324, on:function(){ st('b2',P,L,L); on('bc2'); on('bl2'); }, offf:function(){ stReset('b2'); off('bc2'); off('bl2'); }},
-        {y:564, on:function(){ st('b3',P,L,L); on('bc3'); on('bl3'); }, offf:function(){ stReset('b3'); off('bc3'); off('bl3'); }},
-        {y:804, on:function(){ st('b4',L,L,'var(--paper)'); on('bc4'); on('bl4'); }, offf:function(){ stReset('b4'); off('bc4'); off('bl4'); }},
-        {y:800, on:function(){ on('sum1b'); }, offf:function(){ off('sum1b'); }}
-      ]},
+      keys: A1.map(function(k, i){ k.on = function(){ fire1(k, i); }; k.offf = function(){ unfire1(k); }; return k; }) },
     { wrap:'process', road:'road2', tok:'tok2', end:1140, fadeAt:1140,
       keys:[
         {y:0,   on:function(){ on('ly1'); on('ly1t'); }, offf:function(){ off('ly1'); off('ly1t'); }},

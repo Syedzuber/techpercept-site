@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@110,700;125,800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=d96fd58a">
+<link rel="stylesheet" href="assets/css/styles.css?v=04096c8b">
 </head>
 <body>
 <div class="wrap">
@@ -53,73 +53,39 @@
   </div>
 </section>
 
-<!-- ============ ACT I — PROBLEM ============ -->
+<!-- ============ ACT I — PROBLEM (four businesses, one road; copy lives in assets/js/config.js) ============ -->
 <section id="problem" style="padding-top:24px">
   <div class="act-head">
     <span class="n" style="color:var(--leak)">I</span>
-    <h2 class="disp">The problem. A serious business rarely runs short of leads. It runs short of <span class="hl hl-red">system</span>.</h2>
+    <h2 class="disp">The problem, for the business that&hellip;</h2>
   </div>
+  <div class="chips" id="chips" role="group" aria-label="Which business is yours"><span class="hint">Pick yours</span></div>
+  <p class="intro" id="intro1"></p>
   <div class="road-wrap" style="height:1180px" data-act="1">
     <div class="rail" style="height:1040px"></div>
     <div class="road" id="road1" style="background:var(--leak)"></div>
 
     <div class="st" id="s1" style="top:60px">1</div>
-    <div class="side l" style="top:52px"><div class="k">FIRST CONTACT</div><div class="t cap" id="c1">The 9pm enquiry gets answered the <span class="hl hl-red">next afternoon</span> — after two other vendors already have.</div></div>
-    <div class="callout r cap" id="l1" style="top:60px">LEAK A · 21:04 → 12:30<br><span>15 hours. Lead gone to the vendor who replied in four minutes.</span></div>
+    <div class="side l" style="top:52px"><div class="k" id="k1"></div><div class="t cap" id="c1"></div></div>
+    <div class="callout r cap" id="l1" style="top:60px"></div>
 
     <div class="st" id="s2" style="top:320px">2</div>
-    <div class="side r cap" id="c2" style="top:316px"><div class="k">THE QUOTE</div><div class="t">The quote goes out on day four and gets <span class="hl hl-red">one follow-up</span> call. Then silence. The buyer, confused about the subsidy, signs with whoever explained it.</div></div>
-    <div class="callout l cap" id="l2" style="top:320px">LEAK B · DAY 4 → DAY 34<br><span>Lost on touch two. Marked "price". It wasn't price.</span></div>
+    <div class="side r cap" id="c2w" style="top:316px"><div class="k" id="k2"></div><div class="t" id="c2"></div></div>
+    <div class="callout l cap" id="l2" style="top:320px"></div>
 
     <div class="st" id="s3" style="top:580px">3</div>
-    <div class="side l" style="top:572px"><div class="k">HANDOVER</div><div class="t cap" id="c3">The order lives in the <span class="hl hl-red">salesman's head</span> when the project team takes over. Ops starts from a blank sheet and re-asks the customer everything.</div></div>
-    <div class="callout r cap" id="l3" style="top:580px">LEAK C · DAY 0 → DAY 4<br><span>First impression of delivery: chaos.</span></div>
+    <div class="side l" style="top:572px"><div class="k" id="k3"></div><div class="t cap" id="c3"></div></div>
+    <div class="callout r cap" id="l3" style="top:580px"></div>
 
     <div class="st" id="s4" style="top:840px">4</div>
-    <div class="side r cap" id="c4" style="top:836px"><div class="k">EXECUTION &amp; BILLING</div><div class="t">The <span class="hl hl-red">DISCOM approval</span> stuck for three weeks that nobody knew about until the customer called. The milestone <span class="hl hl-red">invoice</span> raised fifty days late. The <span class="hl hl-red">retention</span> never billed at all.</div></div>
-    <div class="callout l cap" id="l4" style="top:840px">LEAK D · DAY 41 → DAY 150<br><span>Work done. Money missing.</span></div>
+    <div class="side r cap" id="c4w" style="top:836px"><div class="k" id="k4"></div><div class="t" id="c4"></div></div>
+    <div class="callout l cap" id="l4" style="top:840px"></div>
 
     <div class="tok" id="tok1" style="top:0;background:var(--leak);box-shadow:0 0 0 2px var(--leak)"></div>
 
     <div class="sum cap" id="sum1" style="top:1060px">
-      <span class="disp" style="font-size:48px;letter-spacing:-.025em;color:var(--leak);line-height:1">Crores a year</span>
-      <span style="font-size:17px;color:var(--ink-2);max-width:520px;line-height:1.5;text-align:left">Each gap is small. Together they are the difference between the business you have and the one you should have — same team, same <span class="hl hl-red">leads</span>, same ad spend. <span class="mono" style="font-size:11px;color:var(--ink-3)">The audit puts your number on it.</span></span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ACT I·b — THE BUSINESS THAT ALREADY BOUGHT THE SYSTEM ============ -->
-<section id="bought" style="padding-top:24px">
-  <div class="act-head">
-    <span class="n" style="color:var(--leak)">I<span style="font-size:.5em;vertical-align:top;font-stretch:110%">b</span></span>
-    <h2 class="disp">The other version of this road. The business that already <span class="hl hl-red">bought the system</span>.</h2>
-  </div>
-  <p style="margin:0 0 24px 76px;font-size:17px;line-height:1.5;color:var(--ink-2);max-width:800px">Zoho, Odoo, HubSpot — twenty-five seats, licensed two years ago, set up by a reseller who has since moved on. The lead goes in. The leaks are the same as above. The causes are not. <span class="mono" style="font-size:12px;color:var(--ink-3)">A composite of what we find when the system is already there.</span></p>
-  <div class="road-wrap" style="height:1180px" data-act="1b">
-    <div class="rail" style="height:960px"></div>
-    <div class="road" id="road1b" style="background:linear-gradient(to bottom,var(--signal) 0,var(--signal) 84px,var(--leak) 84px)"></div>
-
-    <div class="st" id="b1" style="top:60px">✓</div>
-    <div class="side l" style="top:52px"><div class="k" style="color:var(--signal-text)">CAPTURED · 21:04</div><div class="t cap" id="bc1">The enquiry lands in the CRM <span class="hl hl-green">in seconds</span>, source-tagged, assigned. This part works. It is the part the reseller demoed.</div></div>
-    <div class="callout r cap" id="bl1" style="top:60px;color:var(--signal-text);border-color:var(--signal)">SYSTEM · WORKING<br><span>The licence is earning its keep for exactly one screen.</span></div>
-
-    <div class="st" id="b2" style="top:300px">2</div>
-    <div class="side r cap" id="bc2" style="top:296px"><div class="k">THE PIPELINE</div><div class="t">Every deal sits in <span class="hl hl-red">"Qualified"</span> for forty days because nobody updates the stage. The follow-up cadence exists as a workflow — switched off in month two, after it emailed a customer twice.</div></div>
-    <div class="callout l cap" id="bl2" style="top:300px">PEOPLE · NOBODY OWNS THE DATA<br><span>The system is a data-entry tax. So nobody pays it.</span></div>
-
-    <div class="st" id="b3" style="top:540px">3</div>
-    <div class="side l" style="top:532px"><div class="k">THE DASHBOARD</div><div class="t cap" id="bc3">The founder's dashboard says ₹4.2 Cr in pipeline. The sales head's WhatsApp says ₹1.1 Cr. The founder <span class="hl hl-red">stopped opening</span> the dashboard in March.</div></div>
-    <div class="callout r cap" id="bl3" style="top:540px">CONFIGURATION · DEFAULT STAGES, NO RULES<br><span>Built to the product's idea of a pipeline, not the business's.</span></div>
-
-    <div class="st" id="b4" style="top:780px">4</div>
-    <div class="side r cap" id="bc4" style="top:776px"><div class="k">THE PARALLEL SYSTEM</div><div class="t">Three of eleven modules in use. Six of twenty-five seats log in. The real business runs in <span class="hl hl-red">four WhatsApp groups</span> and one Excel, and the CRM is where someone copies it on Friday — if there's time.</div></div>
-    <div class="callout l cap" id="bl4" style="top:780px">DIRECTION · A TOOL WAS BOUGHT. A PROCESS NEVER WAS.<br><span>Nobody wrote down what "done" looks like, so the implementation never finished.</span></div>
-
-    <div class="tok" id="tok1b" style="top:0;background:var(--leak);box-shadow:0 0 0 2px var(--leak)"></div>
-
-    <div class="sum cap" id="sum1b" style="top:980px">
-      <span class="disp" style="font-size:48px;letter-spacing:-.025em;color:var(--leak);line-height:1">Same leak.<br>Different cause.</span>
-      <span style="font-size:17px;color:var(--ink-2);max-width:520px;line-height:1.5;text-align:left">Nobody needs to rip this out. The audit reads the data you already have — stage history, activity logs, who logged in when — and names which of the three failed: the <b style="color:var(--ink)">people</b>, the <b style="color:var(--ink)">configuration</b>, or the <b style="color:var(--ink)">direction</b>. Then we fix that one. <span class="mono" style="font-size:11px;color:var(--ink-3)">You keep the system you paid for.</span></span>
+      <span class="disp" id="sum1h" style="font-size:48px;letter-spacing:-.025em;color:var(--leak);line-height:1"></span>
+      <span id="sum1b" style="font-size:17px;color:var(--ink-2);max-width:520px;line-height:1.5;text-align:left"></span>
     </div>
   </div>
 </section>
@@ -246,7 +212,7 @@
 
 </div>
 
-<script src="assets/js/config.js?v=da5b6570"></script>
-<script src="assets/js/main.js?v=a56a7bf1"></script>
+<script src="assets/js/config.js?v=ef5af0c1"></script>
+<script src="assets/js/main.js?v=e4e55fd0"></script>
 </body>
 </html>
