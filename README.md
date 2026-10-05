@@ -5,25 +5,31 @@ The Techpercept website. One static page, no build step required to deploy — `
 ## Layout
 
 ```
-index.html        ← the deployed page (generated — do not hand-edit)
-template.html     ← the page's markup and script: edit THIS
-styles.css        ← all CSS, design-system tokens at the top: edit THIS
-build.py          ← assembles index.html; stamps styles.css with a cache-busting hash
-src/              ← outlined wordmark paths, favicon, logo SVGs
-.htaccess         ← Hostinger/Apache: HTTPS redirect, caching, security headers
+index.html              ← the deployed page (generated — do not hand-edit)
+template.html           ← the page's markup: edit THIS
+assets/css/styles.css   ← all CSS, design-system tokens at the top: edit THIS
+assets/js/config.js     ← the four launch values + hero enquiry sources: edit THIS
+assets/js/main.js       ← road engine, form wiring, hero source rotation
+build.py                ← assembles index.html; stamps every assets/ link with a content hash
+src/                    ← outlined wordmark paths, favicon, logo SVGs (build inputs; not served)
+.htaccess               ← Hostinger/Apache: HTTPS redirect, caching, security headers
 ```
 
-`index.html` is checked in so Hostinger can deploy without running Python. After any edit to `template.html` **or `styles.css`**, run `python3 build.py` and commit the changed files plus `index.html` — the build stamps the stylesheet link with a content hash, so a CSS change always reaches returning visitors.
+`index.html` is checked in so Hostinger can deploy without running Python. After any edit to `template.html` **or anything under `assets/`**, run `python3 build.py` and commit the changed files plus `index.html` — the build stamps each asset link with a content hash, so a CSS or JS change always reaches returning visitors despite the 1-year browser cache.
 
 ## Before first launch — fill the config block
 
-At the bottom of `template.html`, inside `<script>`, there is a labelled block:
+`assets/js/config.js` holds everything site-specific:
 
 ```js
-var ZOHO_WEBTOLEAD_URL = "";   // Zoho CRM → Setup → Developer Space → Web Forms → the form's action URL
-var CALENDLY_URL = "";         // https://calendly.com/…
-var WHATSAPP = "";             // +91 …
-var EMAIL = "";                // hello@techpercept.com
+window.TP_CONFIG = {
+  ZOHO_WEBTOLEAD_URL: "",   // Zoho CRM → Setup → Developer Space → Web Forms → the form's action URL
+  CALENDLY_URL: "",         // https://calendly.com/…
+  WHATSAPP: "",             // +91 …
+  EMAIL: "",                // hello@techpercept.com
+  SOURCES: ["IndiaMART", "WhatsApp", "Instagram", "Google", "JustDial"],  // hero: "Enquiry arrives on …"
+  SOURCE_EVERY: 3000
+};
 ```
 
 Until `ZOHO_WEBTOLEAD_URL` is set, the form refuses to submit and shows a note — on purpose, so a leaking contact form never goes live on a RevOps firm's site. Fill all four, run `python3 build.py`, commit.
@@ -57,7 +63,7 @@ git push -u origin main
 
 ## Launch checklist
 
-- [ ] Four config values filled, `build.py` run, committed
+- [ ] Four config values filled in `assets/js/config.js`, `build.py` run, committed
 - [ ] Deployed; techpercept.com loads over HTTPS
 - [ ] Opened on your own phone — the road stacks, nothing clips
 - [ ] Submitted the form once yourself; lead appears in Zoho
@@ -67,4 +73,4 @@ git push -u origin main
 
 ## Editing afterwards
 
-Copy and structure live in `template.html`; every style lives in `styles.css`. Colours are CSS variables in the first block of `styles.css`, named after the Techpercept design system (`--leak`, `--signal`, `--signal-text`, `--ink`, `--paper`…). Change a token there and it changes everywhere. Rebuild, commit, push.
+Copy and structure live in `template.html`; every style lives in `assets/css/styles.css`; behaviour in `assets/js/main.js`. Colours are CSS variables in the first block of the stylesheet, named after the Techpercept design system (`--leak`, `--signal`, `--signal-text`, `--ink`, `--paper`…). Change a token there and it changes everywhere. Rebuild, commit, push.

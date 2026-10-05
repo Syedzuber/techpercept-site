@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@110,700;125,800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 <div class="wrap">
@@ -45,7 +45,7 @@
     <div class="rail" style="left:280px;top:40px;height:480px;transform:none"></div>
     <div class="road" id="road0" style="left:280px;top:40px;background:var(--leak);transform:none"></div>
     <div class="st" style="left:280px;top:40px">0</div>
-    <div class="mono" style="position:absolute;left:320px;top:48px;font-size:12px;color:var(--ink-2)">Enquiry arrives on IndiaMART</div>
+    <div class="mono" style="position:absolute;left:320px;top:48px;font-size:12px;color:var(--ink-2)">Enquiry arrives on <span class="src" id="src">IndiaMART</span></div>
     <div style="position:absolute;left:320px;top:68px;font-size:14px;color:var(--ink-3);max-width:220px;line-height:1.4">Paid for. A real buyer. A real rooftop.</div>
     <div class="tok" id="tok0" style="left:280px;top:78px;background:var(--leak);box-shadow:0 0 0 2px var(--leak);opacity:1"></div>
     <div class="mono" style="position:absolute;right:calc(100% - 256px);top:300px;width:160px;text-align:right;font-size:11px;line-height:16px;color:var(--ink-3)">What happens next is the whole business.</div>
@@ -60,7 +60,7 @@
     <h2 class="disp">The problem. A serious business rarely runs short of leads. It runs short of <span class="hl hl-red">system</span>.</h2>
   </div>
   <div class="road-wrap" style="height:1180px" data-act="1">
-    <div class="rail" style="height:1180px"></div>
+    <div class="rail" style="height:1040px"></div>
     <div class="road" id="road1" style="background:var(--leak)"></div>
 
     <div class="st" id="s1" style="top:60px">1</div>
@@ -96,7 +96,7 @@
   </div>
   <p style="margin:0 0 24px 76px;font-size:17px;line-height:1.5;color:var(--ink-2);max-width:800px">This is what runs today at a 400+ MW EPC and RESCO developer in Delhi, built in the order the problems showed up. Three layers assemble around the road as you scroll.</p>
   <div class="road-wrap" style="height:1260px" data-act="2">
-    <div class="rail" style="height:1260px"></div>
+    <div class="rail" style="height:1140px"></div>
     <div class="road" id="road2" style="background:var(--signal)"></div>
 
     <div class="band lyr" id="ly1" style="top:20px;height:380px"></div>
@@ -140,7 +140,7 @@
     <h2 class="disp">The solution. We start with the numbers, not a pitch.</h2>
   </div>
   <div class="road-wrap" style="height:720px" data-act="3">
-    <div class="rail" style="height:720px"></div>
+    <div class="rail" style="height:640px"></div>
     <div class="road" id="road3" style="background:var(--ink)"></div>
 
     <div class="card" id="m1" style="top:60px;border-color:var(--leak)"><span><b>Audit</b><br><small>1–2 weeks · fixed fee</small></span><span class="tag" style="color:var(--leak)">YOUR LEAK, IN ₹</span></div>
@@ -210,116 +210,7 @@
 
 </div>
 
-<script>
-(function(){
-  /* ===== CONFIG — fill before launch ===== */
-  var ZOHO_WEBTOLEAD_URL = "";          /* Zoho CRM → Web-to-Lead form action URL */
-  var CALENDLY_URL = "";                /* e.g. https://calendly.com/you/20min */
-  var WHATSAPP = "";                    /* e.g. +91 98xxx xxxxx */
-  var EMAIL = "";                       /* e.g. hello@techpercept.com */
-  /* ======================================= */
-
-  document.getElementById('yr').textContent = new Date().getFullYear();
-  if (CALENDLY_URL) { var c = document.getElementById('calLink'); c.href = CALENDLY_URL; c.target = '_blank'; c.rel = 'noopener'; }
-  if (WHATSAPP) document.getElementById('waNum').textContent = WHATSAPP;
-  if (EMAIL) document.getElementById('emailAddr').textContent = EMAIL;
-  var form = document.getElementById('leadForm');
-  if (ZOHO_WEBTOLEAD_URL) form.action = ZOHO_WEBTOLEAD_URL;
-  form.addEventListener('submit', function(e){
-    if (!ZOHO_WEBTOLEAD_URL) { e.preventDefault(); document.getElementById('formNote').textContent = 'Form not connected yet — set ZOHO_WEBTOLEAD_URL in the config block.'; }
-  });
-
-  /* ===== The road ===== */
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var mobile = window.matchMedia('(max-width: 1100px)').matches;
-  function q(id){ return document.getElementById(id); }
-  function on(id){ var e = q(id); if (e) e.classList.add('on'); }
-  function st(id, bg, bd, fg){ var e = q(id); if (!e) return; e.style.background = bg; e.style.borderColor = bd; if (fg) e.style.color = fg; }
-  function tok(id, top, op){ var e = q(id); if (!e) return; e.style.top = top + 'px'; if (op !== undefined) e.style.opacity = op; }
-  function road(id, h){ var e = q(id); if (e) e.style.height = h + 'px'; }
-  function wait(ms, fn){ setTimeout(fn, reduce ? 0 : ms); }
-  var P='var(--paper-raised)', I='var(--ink)', L='var(--leak)', S='var(--signal)', SI='var(--signal-on-ink)';
-
-  /* ---- Scroll-driven road ----
-     The viewer is the clock. Each act maps the token's position to how far the
-     act has been scrolled; keyframes fire (and un-fire) as the token passes them.
-     Scroll fast and it plays fast; stop and it holds; scroll up and it rewinds. */
-  function off(id){ var e = q(id); if (e) e.classList.remove('on'); }
-  function stReset(id){ var e = q(id); if (!e) return; e.style.background=''; e.style.borderColor=''; e.style.color=''; }
-
-  var ACTS = [
-    { wrap:'problem', road:'road1', tok:'tok1', end:1040, fadeAt:1040,
-      keys:[
-        {y:84,  on:function(){ st('s1',P,L,L); on('c1'); on('l1'); }, offf:function(){ stReset('s1'); off('c1'); off('l1'); }},
-        {y:344, on:function(){ st('s2',P,L,L); on('c2'); on('l2'); }, offf:function(){ stReset('s2'); off('c2'); off('l2'); }},
-        {y:604, on:function(){ st('s3',P,L,L); on('c3'); on('l3'); }, offf:function(){ stReset('s3'); off('c3'); off('l3'); }},
-        {y:864, on:function(){ st('s4',L,L,'var(--paper)'); on('c4'); on('l4'); }, offf:function(){ stReset('s4'); off('c4'); off('l4'); }},
-        {y:860, on:function(){ on('sum1'); }, offf:function(){ off('sum1'); }}
-      ]},
-    { wrap:'process', road:'road2', tok:'tok2', end:1140, fadeAt:1140,
-      keys:[
-        {y:0,   on:function(){ on('ly1'); on('ly1t'); }, offf:function(){ off('ly1'); off('ly1t'); }},
-        {y:104, on:function(){ st('p1',S,S,I); on('d1'); }, offf:function(){ stReset('p1'); off('d1'); }},
-        {y:294, on:function(){ st('p2',S,S,I); on('d2'); }, offf:function(){ stReset('p2'); off('d2'); }},
-        {y:420, on:function(){ on('ly2'); on('ly2t'); }, offf:function(){ off('ly2'); off('ly2t'); }},
-        {y:524, on:function(){ st('p3',SI,SI,I); on('d3'); }, offf:function(){ var e=q('p3'); if(e){e.style.background='var(--ink)';e.style.borderColor=SI;e.style.color='var(--paper)';} off('d3'); }},
-        {y:724, on:function(){ st('p4',SI,SI,I); on('d4'); }, offf:function(){ var e=q('p4'); if(e){e.style.background='var(--ink)';e.style.borderColor=SI;e.style.color='var(--paper)';} off('d4'); }},
-        {y:890, on:function(){ on('ly3'); on('ly3t'); }, offf:function(){ off('ly3'); off('ly3t'); }},
-        {y:940, on:function(){ st('p5',S,S,I); on('d5'); on('d5b'); }, offf:function(){ stReset('p5'); off('d5'); off('d5b'); }},
-        {y:1000,on:function(){ on('sum2'); }, offf:function(){ off('sum2'); }}
-      ]},
-    { wrap:'solution', road:'road3', tok:'tok3', end:640, fadeAt:640,
-      keys:[
-        {y:106, on:function(){ on('e1'); on('e1b'); }, offf:function(){ off('e1'); off('e1b'); }},
-        {y:326, on:function(){ var m=q('m2'); if(m) m.style.borderColor=L; on('e2'); on('e2b'); }, offf:function(){ var m=q('m2'); if(m) m.style.borderColor=''; off('e2'); off('e2b'); }},
-        {y:546, on:function(){ on('e3'); }, offf:function(){ off('e3'); }},
-        {y:520, on:function(){ on('sum3'); }, offf:function(){ off('sum3'); }}
-      ]}
-  ];
-
-  /* The token sits a fixed distance below the top of the viewport; the act's progress is
-     how far that line has travelled into the act's road-wrap. 38% keeps it in the eye line. */
-  var EYE = 0.38;
-  function tick(){
-    var vh = window.innerHeight, eye = window.scrollY + vh*EYE;
-    ACTS.forEach(function(a){
-      var wrap = q(a.wrap) && q(a.wrap).querySelector('.road-wrap'); if (!wrap) return;
-      var top = wrap.getBoundingClientRect().top + window.scrollY;
-      var y = Math.max(0, Math.min(a.end, eye - top));
-      road(a.road, y);
-      var t = q(a.tok); if (t) { t.style.top = Math.min(y, a.end - 10) + 'px'; t.style.opacity = (y > 0 && y < a.fadeAt) ? 1 : 0; }
-      a.keys.forEach(function(k){
-        var hit = y >= k.y;
-        if (hit && !k.state) { k.state = true; k.on(); }
-        else if (!hit && k.state) { k.state = false; k.offf(); }
-      });
-    });
-  }
-  var raf = null;
-  function onScroll(){ if (raf) return; raf = requestAnimationFrame(function(){ raf = null; tick(); }); }
-
-  if (mobile || reduce) {
-    /* Narrow screens have no road; reduced-motion gets the end state. Show everything. */
-    document.querySelectorAll('.cap,.lyr,.hl').forEach(function(e){ e.classList.add('on'); });
-    if (reduce && !mobile) { ACTS.forEach(function(a){ road(a.road, a.end); a.keys.forEach(function(k){ k.on(); }); }); }
-    road('road0', 480); tok('tok0', 480);
-  } else {
-    /* The road's own transitions are now scroll-driven: make them snappy so the token
-       follows the hand, not lags it. Station/caption transitions keep their ease. */
-    ACTS.forEach(function(a){ var r=q(a.road), t=q(a.tok); if(r) r.style.transition='height .15s linear'; if(t) t.style.transition='top .15s linear, opacity .4s'; });
-    setTimeout(function(){ road('road0', 480); tok('tok0', 480); }, 400);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    tick();
-    /* Standalone trigger words (outside a caption): draw when a fifth of them is visible */
-    document.querySelectorAll('.hl').forEach(function(el){
-      if (el.closest('.cap')) return;
-      if (!('IntersectionObserver' in window)) { el.classList.add('on'); return; }
-      var o = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting) { el.classList.add('on'); o.disconnect(); } }); }, { threshold: 0.2 });
-      o.observe(el);
-    });
-  }
-})();
-</script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
