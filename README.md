@@ -6,13 +6,14 @@ The Techpercept website. One static page, no build step required to deploy — `
 
 ```
 index.html        ← the deployed page (generated — do not hand-edit)
-template.html     ← the page source: edit THIS
-build.py          ← assembles index.html from template.html + src/
+template.html     ← the page's markup and script: edit THIS
+styles.css        ← all CSS, design-system tokens at the top: edit THIS
+build.py          ← assembles index.html; stamps styles.css with a cache-busting hash
 src/              ← outlined wordmark paths, favicon, logo SVGs
 .htaccess         ← Hostinger/Apache: HTTPS redirect, caching, security headers
 ```
 
-`index.html` is checked in so Hostinger can deploy without running Python. After any edit to `template.html`, run `python3 build.py` and commit both files.
+`index.html` is checked in so Hostinger can deploy without running Python. After any edit to `template.html` **or `styles.css`**, run `python3 build.py` and commit the changed files plus `index.html` — the build stamps the stylesheet link with a content hash, so a CSS change always reaches returning visitors.
 
 ## Before first launch — fill the config block
 
@@ -66,4 +67,4 @@ git push -u origin main
 
 ## Editing afterwards
 
-Copy, colours and structure live in `template.html`. Colours are CSS variables at the top of the `<style>` block, named after the Techpercept design system (`--leak`, `--signal`, `--signal-text`, `--ink`, `--paper`…). Change a token there and it changes everywhere. Rebuild, commit, push.
+Copy and structure live in `template.html`; every style lives in `styles.css`. Colours are CSS variables in the first block of `styles.css`, named after the Techpercept design system (`--leak`, `--signal`, `--signal-text`, `--ink`, `--paper`…). Change a token there and it changes everywhere. Rebuild, commit, push.
