@@ -24,7 +24,10 @@ src/                    ← outlined wordmark paths, favicon, logo SVGs (build i
 
 ```js
 window.TP_CONFIG = {
-  ZOHO_WEBTOLEAD_URL: "",   // Zoho CRM → Setup → Developer Space → Web Forms → the form's action URL
+  ZOHO_WEBTOLEAD_URL: "https://crm.zoho.in/crm/WebToLeadForm",  // Zoho CRM → Setup → Channels → Webforms → your form → </> Source code
+  ZOHO_XNQSJSDP: "",        // the hidden input named xnQsjsdp in that source
+  ZOHO_XMIWTLD: "",         // the hidden input named xmIwtLD
+  ZOHO_RETURN_URL: "https://techpercept.com/?sent=1",  // the site shows a thank-you note on ?sent=1
   CALENDLY_URL: "",         // https://calendly.com/…
   WHATSAPP: "",             // +91 …
   EMAIL: "",                // hello@techpercept.com
@@ -33,7 +36,7 @@ window.TP_CONFIG = {
 };
 ```
 
-Until `ZOHO_WEBTOLEAD_URL` is set, the form refuses to submit and shows a note — on purpose, so a leaking contact form never goes live on a RevOps firm's site. Fill all four, run `python3 build.py`, commit.
+Until the three `ZOHO_*` values are set, the form refuses to submit and shows a note — on purpose, so a leaking contact form never goes live on a RevOps firm's site. Fill all four, run `python3 build.py`, commit.
 
 ## Deploy to Hostinger (GitHub → hPanel, auto-deploy)
 

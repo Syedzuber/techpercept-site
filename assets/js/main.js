@@ -11,18 +11,45 @@
   var EMAIL = C.EMAIL || "";
 
   function q(id){ return document.getElementById(id); }
+  function track(name, params){ if (typeof gtag === 'function') gtag('event', name, params || {}); }
 
   /* ===== Wiring ===== */
   if (q('yr')) q('yr').textContent = new Date().getFullYear();
-  if (CALENDLY_URL && q('calLink')) { var c = q('calLink'); c.href = CALENDLY_URL; c.target = '_blank'; c.rel = 'noopener'; }
-  if (WHATSAPP && q('waNum')) q('waNum').textContent = WHATSAPP;
+  if (CALENDLY_URL && q('calLink')) { var c = q('calLink'); c.href = CALENDLY_URL; c.target = '_blank'; c.rel = 'noopener'; c.addEventListener('click', function(){ track('book_call', { method: 'calendly' }); }); }
+  if (WHATSAPP && q('waNum')) { q('waNum').textContent = WHATSAPP; var wl = q('waNum').closest('a'); if (wl) wl.addEventListener('click', function(){ track('whatsapp_click'); }); }
   if (EMAIL && q('emailAddr')) q('emailAddr').textContent = EMAIL;
   var form = q('leadForm');
   if (form) {
-    if (ZOHO_WEBTOLEAD_URL) form.action = ZOHO_WEBTOLEAD_URL;
+    /* Zoho web-to-lead needs the action URL plus two org/form tokens as hidden fields
+       (from the form's "Source code" in Zoho: xnQsjsdp, xmIwtLD). actionType is the
+       constant for the Leads module. returnURL is where Zoho sends the visitor after. */
+    var zReady = ZOHO_WEBTOLEAD_URL && C.ZOHO_XNQSJSDP && C.ZOHO_XMIWTLD;
+    var note = q('formNote');
+    if (zReady) {
+      form.action = ZOHO_WEBTOLEAD_URL;
+      [['xnQsjsdp', C.ZOHO_XNQSJSDP], ['xmIwtLD', C.ZOHO_XMIWTLD], ['actionType', 'TGVhZHM='],
+       ['returnURL', C.ZOHO_RETURN_URL || (location.origin + '/?sent=1')], ['zc_gad', ''], ['aG9uZXlwb3Q', '']
+      ].forEach(function(p){ var h = document.createElement('input'); h.type = 'hidden'; h.name = p[0]; h.value = p[1]; form.appendChild(h); });
+    }
+    var THANKS = 'Got it. We reply within one working day — usually sooner.';
     form.addEventListener('submit', function(e){
-      if (!ZOHO_WEBTOLEAD_URL) { e.preventDefault(); q('formNote').textContent = 'Form not connected yet — set ZOHO_WEBTOLEAD_URL in assets/js/config.js.'; }
+      if (!zReady) { e.preventDefault(); if (note) note.textContent = 'Form not connected yet — set the ZOHO_* values in assets/js/config.js.'; return; }
+      if (!window.fetch || !window.FormData) return;   /* old browser: plain POST, Zoho redirects to returnURL */
+      e.preventDefault();
+      var btn = form.querySelector('button[type=submit]'); if (btn) btn.disabled = true;
+      if (note) note.textContent = 'Sending…';
+      fetch(ZOHO_WEBTOLEAD_URL, { method: 'POST', body: new FormData(form), cache: 'no-cache' })
+        .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+        .then(function(){ form.reset(); if (note) note.textContent = THANKS; track('generate_lead', { method: 'website_form' }); })
+        .catch(function(){ /* background send failed: let the browser post it the classic way */ form.submit(); })
+        .then(function(){ if (btn) btn.disabled = false; });
     });
+    /* Back from Zoho after a submission */
+    if (/[?&]sent=1/.test(location.search)) {
+      if (note) note.textContent = THANKS; track('generate_lead', { method: 'website_form_redirect' });
+      var talk = q('talk'); if (talk) setTimeout(function(){ talk.scrollIntoView(); }, 50);
+      if (history.replaceState) history.replaceState(null, '', location.pathname);
+    }
   }
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -93,6 +120,7 @@
   }
   function switch1(sc){
     if (sc === cur) return;
+    track('scenario_switch', { scenario: sc.id });
     var w = q('problem') && q('problem').querySelector('.road-wrap');
     if (reduce || mobile || !w) { render1(sc); return; }
     w.classList.add('swap');
