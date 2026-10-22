@@ -11,8 +11,10 @@ assets/css/styles.css   ← all CSS, design-system tokens at the top: edit THIS
 assets/js/config.js     ← YOUR file: launch values + hero enquiry sources. Nothing else touches it
 assets/js/scenarios.js  ← the four Act I businesses (page copy)
 assets/js/main.js       ← road engine, form wiring, hero source rotation
-build.py                ← assembles index.html; stamps every assets/ link with a content hash
-src/                    ← outlined wordmark paths, favicon, logo SVGs (build inputs; not served)
+assets/fonts/           ← Archivo (variable), Source Sans 3, JetBrains Mono — self-hosted, no Google Fonts request
+work/project-system.html ← case page (generated from src/work-project-system.html — noindex, not linked yet)
+build.py                ← assembles index.html and work/ pages; stamps every assets/ link with a content hash
+src/                    ← outlined wordmark paths, favicon, logo SVGs, work-page templates (build inputs; not served)
 .htaccess               ← Hostinger/Apache: HTTPS redirect, caching, security headers
 ```
 
@@ -77,8 +79,10 @@ git push -u origin main
 
 ## Act I — the four businesses
 
-Act I is one road with a switch. The copy for all four businesses (has no system / bought a system / outgrew its system / has four systems) lives in `assets/js/scenarios.js` as `TP_SCENARIOS`; the markup in `template.html` is empty slots. To change a caption, edit the text there and rebuild. To add a fifth, add an object — but don't: four is the number of discovery-call archetypes, and a fifth chip turns the row into a dropdown. Every scenario that isn't a real client keeps its "A composite." tag.
+Act I is one road with a switch. The copy for all four businesses (has no system / bought a system / outgrew its system / has four systems) lives in `assets/js/scenarios.js` as `TP_SCENARIOS`; the markup in `template.html` is empty slots. To change a caption, edit the text there and rebuild. To add a fifth, add an object — but don't: four is the number of discovery-call archetypes, and a fifth chip turns the row into a dropdown. Every scenario that isn't a real client keeps its "A composite." tag. "Outgrew its system" is the real client from Act II, anonymised.
+
+Sections that aren't ready to ship (e.g. the case page's Results) sit between `<!-- build:omit` and `/build:omit -->` in the template; `build.py` strips them from the served page.
 
 ## Editing afterwards
 
-Copy and structure live in `template.html`; every style lives in `assets/css/styles.css`; behaviour in `assets/js/main.js`. Colours are CSS variables in the first block of the stylesheet, named after the Techpercept design system (`--leak`, `--signal`, `--signal-text`, `--ink`, `--paper`…). Change a token there and it changes everywhere. Rebuild, commit, push.
+Copy and structure live in `template.html`; every style lives in `assets/css/styles.css`; behaviour in `assets/js/main.js`. Colours are CSS variables near the top of the stylesheet (after the @font-face block), named after the Techpercept design system (`--leak`, `--signal`, `--signal-text`, `--ink`, `--paper`…). Change a token there and it changes everywhere. Rebuild, commit, push.

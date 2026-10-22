@@ -4,11 +4,19 @@
    everywhere. Named after the Techpercept design system.
    ============================================================ */
 
+/* ===== Faces — self-hosted (assets/fonts), swap so text never waits ===== */
+@font-face{font-family:"Archivo";src:url("../fonts/archivo-var.woff2") format("woff2");font-weight:100 900;font-stretch:62% 125%;font-style:normal;font-display:swap}
+@font-face{font-family:"Source Sans 3";src:url("../fonts/source-sans-3-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Source Sans 3";src:url("../fonts/source-sans-3-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("../fonts/jetbrains-mono-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("../fonts/jetbrains-mono-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("../fonts/jetbrains-mono-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+
 /* ===== Techpercept design system — tokens (Paper theme) ===== */
 :root{
   --paper:#F2F1ED; --paper-raised:#F7F6F3;
-  --ink:#161A1F; --ink-2:#3A4049; --ink-3:#8A9099; --rule:#C9CCD1;
-  --leak:#B5412A; --signal:#5FD39A; --signal-text:#2E7D5B; --signal-soft:rgba(95,211,154,.07); --signal-on-ink:#7FD4A8; --panel-text:#D9DCE0;
+  --ink:#161A1F; --ink-2:#3A4049; --ink-3:#686E77; --rule:#C9CCD1;
+  --leak:#B5412A; --signal:#5FD39A; --signal-text:#2B7656; --signal-soft:rgba(95,211,154,.07); --signal-on-ink:#7FD4A8; --panel-text:#D9DCE0;
   --display:"Archivo","Arial Narrow",Impact,sans-serif; --sans:"Source Sans 3","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
   --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:64px; --s6:112px; --station-gap:260px;
   --hair:1px; --drawn:2px;
@@ -70,11 +78,12 @@ nav ul a.cta:hover{background:var(--ink);color:var(--paper)}
 .callout.r{left:calc(50% + 76px);border-left:var(--drawn) solid var(--leak)}
 .callout.l{right:calc(50% + 76px);text-align:right;border-right:var(--drawn) solid var(--leak)}
 .callout span{color:var(--ink-2)}
-.hl{position:relative;display:inline;font-weight:600;color:var(--ink);background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0 2px;transition:background-size .7s cubic-bezier(.4,0,.2,1) .35s,color .4s ease .35s}
-.on .hl,.hl.on{background-size:100% 2px}
-.hl-red{color:var(--leak)}.hl-red.hl{background-image:linear-gradient(var(--leak),var(--leak))}
-.hl-green{color:var(--signal-text)}.hl-green.hl{background-image:linear-gradient(var(--signal),var(--signal))}
-.hl-light{color:var(--signal-on-ink)}.hl-light.hl{background-image:linear-gradient(var(--signal-on-ink),var(--signal-on-ink))}
+.hl{position:relative;display:inline-block;font-weight:600;color:var(--ink);transition:color .4s ease .35s}
+.hl::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.4,0,.2,1) .35s}
+.on .hl::after,.hl.on::after{transform:scaleX(1)}
+.hl-red{color:var(--leak)}
+.hl-green{color:var(--signal-text)}.hl-green::after{background:var(--signal)}
+.hl-light{color:var(--signal-on-ink)}
 
 /* Act I switch: four businesses, one road */
 .chips{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 0 76px;padding:12px 0;background:var(--paper);border-bottom:var(--hair) solid var(--rule)}
@@ -97,9 +106,52 @@ nav ul a.cta:hover{background:var(--ink);color:var(--paper)}
 .act-head h2{font-size:clamp(26px,3.2vw,36px)}
 .band{position:absolute;left:40px;right:40px;border:1.5px solid var(--signal);background:var(--signal-soft)}
 .band-t{position:absolute;left:60px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--signal-text)}
+
+/* stage chain — the project system's six stages (Act II layer 2, /work pages) */
+.chain{display:flex;flex-wrap:wrap;gap:8px 26px;list-style:none;margin-top:14px;font-family:var(--mono);font-size:12px;line-height:1.3;letter-spacing:.03em;color:var(--signal-text)}
+.chain li{position:relative;padding:5px 9px;border:1.5px solid currentColor;white-space:nowrap}
+.chain li+li::before{content:"→";position:absolute;left:-20px;top:50%;transform:translateY(-50%);border:0}
+.side.l .chain{justify-content:flex-end}
+.chain-tags{margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+[data-act="2"] .chain{color:var(--signal-on-ink)}
+[data-act="2"] .chain-tags{color:var(--panel-text)}
+/* Layer 2 labels are light-on-ink: hold them until the ink panel has assembled */
+#ly2:not(.on) ~ .side > .k{opacity:0}
+#ly2 ~ .side > .k{transition:opacity .5s}
+/* stations reveal one by one as the caption arrives (opacity/transform only — composited) */
+.cap .chain li{opacity:0;transform:translateY(4px);transition:opacity .4s ease,transform .4s ease}
+.cap.on .chain li{opacity:1;transform:none}
+.cap.on .chain li:nth-child(2){transition-delay:.08s}.cap.on .chain li:nth-child(3){transition-delay:.16s}
+.cap.on .chain li:nth-child(4){transition-delay:.24s}.cap.on .chain li:nth-child(5){transition-delay:.32s}
+.cap.on .chain li:nth-child(6){transition-delay:.4s}
 .sum{position:absolute;left:0;right:0;display:flex;align-items:baseline;gap:20px;justify-content:center;flex-wrap:wrap;text-align:center;padding:0 var(--s3)}
 .card{position:absolute;left:50%;transform:translateX(-50%);width:152px;height:92px;border:var(--drawn) solid var(--ink);background:var(--paper-raised);padding:14px;display:flex;flex-direction:column;justify-content:space-between;transition:border-color .5s}
 .card b{font-size:16px}.card small{font-size:12.5px;color:var(--ink-2)}.card .tag{font-family:var(--mono);font-size:10px;color:var(--ink-3)}
+
+/* work pages (/work/…) — same tokens, same act heads, no road */
+.page-head{display:flex;flex-direction:column;gap:28px;padding:88px 0 72px;max-width:900px}
+.page-head h1{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:clamp(40px,6vw,72px);line-height:.98;letter-spacing:-.035em}
+.page-head .lede{font-size:20px;line-height:1.5;max-width:680px;color:var(--ink-2)}
+.page-head .trust{font-family:var(--mono);font-size:13px;color:var(--ink-3);border-top:var(--hair) solid var(--rule);padding-top:20px;max-width:680px}
+.blk{padding-bottom:72px}
+.blk-body{margin-left:76px;display:flex;flex-direction:column;gap:var(--s3);max-width:900px}
+.blk-lede{font-size:18px;line-height:1.55;color:var(--ink-2);max-width:760px}
+.pts{list-style:none;display:flex;flex-direction:column;gap:var(--s2)}
+.pts li{border-left:var(--drawn) solid var(--leak);padding:2px 0 2px var(--s2);font-size:17px;line-height:1.5;color:var(--ink-2)}
+.pts b,.steps b{color:var(--ink)}
+.steps{list-style:none;counter-reset:st;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));border:var(--hair) solid var(--ink)}
+.steps li{counter-increment:st;display:flex;flex-direction:column;gap:8px;padding:22px;border:var(--hair) solid var(--rule);margin:-.5px;font-size:16px;line-height:1.5;color:var(--ink-2)}
+.steps li::before{content:counter(st,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.chain-box{padding:24px;background:var(--ink);color:var(--panel-text)}
+.chain-box .k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--signal-on-ink)}
+.chain-box .chain{color:var(--signal-on-ink)}
+.chain-box .chain-tags{color:var(--panel-text)}
+.cov{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:0;border:var(--hair) solid var(--ink)}
+.cov > div{display:flex;flex-direction:column;gap:8px;padding:22px;border:var(--hair) solid var(--rule);margin:-.5px}
+.cov .k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--signal-text)}
+.cov p{font-size:16px;line-height:1.5;color:var(--ink-2)}
+@media(max-width:1100px){.blk-body{margin-left:0}}
+@media(max-width:640px){.page-head{padding:56px 0 48px}.page-head .lede{font-size:18px}.chain-box,.steps li,.cov > div{padding:18px}}
 
 /* mobile: stack the road's sides */
 @media(max-width:1100px){
@@ -115,6 +167,15 @@ nav ul a.cta:hover{background:var(--ink);color:var(--paper)}
   .sum > span{text-align:left!important;max-width:none!important}
   .card{width:100%;max-width:360px;height:auto;gap:var(--s2)}
   .cap,.lyr{opacity:1;transform:none}
+  /* No dark Layer 2 panel here: the layer names become headings, and light-on-ink text turns back to ink */
+  .band-t{display:block;position:static;margin:var(--s3) 0 var(--s2);padding-top:var(--s2);border-top:var(--hair) solid var(--rule);color:var(--signal-text)!important}
+  [data-act="2"] .side .k{color:var(--signal-text)!important}
+  [data-act="2"] .side .t,[data-act="2"] .side.cap{color:var(--ink-2)!important}
+  [data-act="2"] .hl-light{color:var(--signal-text)}
+  [data-act="2"] .chain{color:var(--signal-text)}
+  [data-act="2"] .chain-tags{color:var(--ink-3)}
+  .side.l .chain{justify-content:flex-start}
+  .cap .chain li{opacity:1;transform:none}
   .m-stack{display:flex;flex-direction:column;gap:var(--s2);padding:var(--s3) 0}
   .m-h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding-top:var(--s2);border-top:var(--hair) solid var(--rule)}
 }
@@ -123,7 +184,7 @@ nav ul a.cta:hover{background:var(--ink);color:var(--paper)}
   .chips .hint{width:100%;margin:0}
   .chip{padding:9px 12px 9px 10px;font-size:12px}
   .hero-draw{display:none}
-  .wrap{padding:0 var(--s3)}
+  .wrap{padding:0 var(--s2)}
   .hero{padding-top:56px}
   .act-head{gap:14px}
   .act-head .n{font-size:44px}
@@ -143,4 +204,4 @@ input:focus,select:focus{outline:2px solid var(--leak);outline-offset:1px}
 button{font-family:inherit;font-size:16px;font-weight:600;padding:16px 24px;background:var(--ink);color:var(--paper);border:0;cursor:pointer;align-self:flex-start}
 button:hover{background:var(--leak)}
 footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:28px 0 48px;border-top:var(--hair) solid var(--ink);font-family:var(--mono);font-size:12px;color:var(--ink-3)}
-@media(prefers-reduced-motion:reduce){.road,.st,.tok,.cap,.lyr,.hl,.card,.road-wrap,.intro{transition:none}}
+@media(prefers-reduced-motion:reduce){.road,.st,.tok,.cap,.lyr,.hl,.hl::after,.card,.road-wrap,.intro,.chain li{transition:none}}

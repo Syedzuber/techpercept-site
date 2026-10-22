@@ -14,18 +14,20 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://techpercept.com/assets/img/og.png">
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F8THGGJ9QN"></script>
+<!-- Google Analytics (GA4) — loaded after first paint so it never competes with the page -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-F8THGGJ9QN');
+  window.addEventListener('load', function(){
+    var go = function(){ var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-F8THGGJ9QN'; document.head.appendChild(s); };
+    ('requestIdleCallback' in window) ? requestIdleCallback(go, { timeout: 2000 }) : setTimeout(go, 1200);
+  });
 </script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,__MARK_B64__">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@110,700;125,800&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/source-sans-3-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -40,6 +42,7 @@
     <li><a class="cta" href="#talk">Talk to us</a></li>
   </ul>
 </nav>
+<main>
 
 <!-- ============ HERO ============ -->
 <section id="top" class="hero">
@@ -107,7 +110,7 @@
 <!-- ============ ACT II — PROCESS ============ -->
 <section id="process" style="padding-top:40px">
   <div class="act-head">
-    <span class="n" style="color:var(--signal)">II</span>
+    <span class="n" style="color:var(--signal-text)">II</span>
     <h2 class="disp">The process. The same lead, the same road — with a system running through it.</h2>
   </div>
   <p style="margin:0 0 24px 76px;font-size:17px;line-height:1.5;color:var(--ink-2);max-width:800px">This is what runs today at a 400+ MW EPC and RESCO developer in Delhi, built in the order the problems showed up. Three layers assemble around the road as you scroll.</p>
@@ -128,7 +131,9 @@
     <div class="band-t lyr" id="ly2t" style="top:442px;color:var(--signal-on-ink)">Layer 2 · Operations · Custom-built · Phase 2</div>
 
     <div class="st" id="p3" style="top:500px;border-color:var(--signal-on-ink);background:var(--ink);color:var(--paper)">3</div>
-    <div class="side l" style="top:492px"><div class="k" style="color:var(--signal-on-ink)">HANDOVER · DAY 0</div><div class="t cap" id="d3" style="font-size:16px;color:var(--panel-text)">Project <span class="hl hl-light">auto-created</span> from the deal — site, sizing, price, contacts carried over. Ops picks up a <span class="hl hl-light">complete brief</span>. Zoho's project module couldn't model this, so we built a platform that could: survey → design → procurement → inventory → SCM → execution → QA/QC → finance → handover.</div></div>
+    <div class="side l" style="top:492px"><div class="k" style="color:var(--signal-on-ink)">HANDOVER · DAY 0</div><div class="t cap" id="d3" style="font-size:16px;color:var(--panel-text)">Project <span class="hl hl-light">auto-created</span> from the deal — site, sizing, price, contacts carried over. Ops picks up a <span class="hl hl-light">complete brief</span>. An off-the-shelf project tool couldn't model how the team works, so we built one that does. Every project runs one chain:
+      <ol class="chain" aria-label="Project stages"><li>Survey</li><li>Design QA</li><li>Procurement</li><li>Execution QA/QC</li><li>Handover</li><li>O&amp;M</li></ol>
+      <div class="chain-tags">Residential · RESCO · Government tenders</div></div></div>
 
     <div class="st" id="p4" style="top:700px;border-color:var(--signal-on-ink);background:var(--ink);color:var(--paper)">4</div>
     <div class="side r cap" id="d4" style="top:696px"><div class="k" style="color:var(--signal-on-ink)">EXECUTION &amp; BILLING · DAY 12 → DAY 83</div><div class="t" style="font-size:16px;color:var(--panel-text)"><span class="hl hl-light">DISCOM delay</span> flagged on day 12 on the CEO dashboard, not day 41. A project-health score names what's blocked, by how many days, and why. QA sign-off triggers the milestone <span class="hl hl-light">invoice</span> automatically. Paid. <span class="hl hl-light">Retention</span> scheduled. Everyone from the site engineer to the CEO sees their own view of it.</div></div>
@@ -187,7 +192,7 @@
     <div class="eyebrow" style="color:var(--ink-3)">Who</div>
     <h2 class="disp" style="font-size:clamp(28px,3.4vw,38px)">Nineteen years of building the systems businesses run on.</h2>
     <p style="font-size:17px;color:var(--ink-2)">Techpercept is led by Zuber, who has spent nineteen years on the unglamorous side of technology: the CRM and ERP implementations, the integrations that have to hold at 2am, the mobile apps used by people who've never opened a laptop.</p>
-    <p style="font-size:17px;color:var(--ink-2)">The pattern has been the same — the tool is rarely the problem; the system around it is. We work with a small number of founder-led solar and EPC businesses, where the founder is the buyer and a leaking pipeline is felt personally. We build with modern AI-assisted tooling and say so.</p>
+    <p style="font-size:17px;color:var(--ink-2)">The pattern has been the same — the tool is rarely the problem; the system around it is. We work with a small number of founder-led solar and EPC businesses, where the founder is the buyer and a leaking pipeline is felt personally.</p>
   </div>
   <div class="facts">
     <div><span class="v">19 years</span><span class="k">Software, CRM/ERP, IoT, mobile</span></div>
@@ -219,6 +224,7 @@
   </form>
 </section>
 
+</main>
 <footer>
   <span>© <span id="yr"></span> Techpercept · The systems a business runs on.</span>
   <span>Zoho · HubSpot · WhatsApp Business · Custom builds</span>
@@ -226,8 +232,8 @@
 
 </div>
 
-<script src="assets/js/config.js"></script>
-<script src="assets/js/scenarios.js"></script>
-<script src="assets/js/main.js"></script>
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/scenarios.js"></script>
+<script defer src="assets/js/main.js"></script>
 </body>
 </html>

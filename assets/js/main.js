@@ -16,7 +16,12 @@
   /* ===== Wiring ===== */
   if (q('yr')) q('yr').textContent = new Date().getFullYear();
   if (CALENDLY_URL && q('calLink')) { var c = q('calLink'); c.href = CALENDLY_URL; c.target = '_blank'; c.rel = 'noopener'; c.addEventListener('click', function(){ track('book_call', { method: 'calendly' }); }); }
-  if (WHATSAPP && q('waNum')) { q('waNum').textContent = WHATSAPP; var wl = q('waNum').closest('a'); if (wl) wl.addEventListener('click', function(){ track('whatsapp_click'); }); }
+  if (WHATSAPP && q('waNum')) {
+    var wn = q('waNum'), wa = document.createElement('a');
+    wa.href = 'https://wa.me/' + WHATSAPP.replace(/\D/g, ''); wa.target = '_blank'; wa.rel = 'noopener'; wa.textContent = WHATSAPP; wa.style.color = 'inherit';
+    wn.textContent = ''; wn.appendChild(wa);
+    wa.addEventListener('click', function(){ track('whatsapp_click'); });
+  }
   if (EMAIL && q('emailAddr')) q('emailAddr').textContent = EMAIL;
   var form = q('leadForm');
   if (form) {
