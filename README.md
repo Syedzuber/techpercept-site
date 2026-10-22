@@ -12,7 +12,7 @@ assets/js/config.js     ← YOUR file: launch values + hero enquiry sources. Not
 assets/js/scenarios.js  ← the four Act I businesses (page copy)
 assets/js/main.js       ← road engine, form wiring, hero source rotation
 assets/fonts/           ← Archivo (variable), Source Sans 3, JetBrains Mono — self-hosted, no Google Fonts request
-work/project-system.html ← case page (generated from src/work-project-system.html — noindex, not linked yet)
+work/project-system.html ← case page (generated from src/work-project-system.html — linked from the end of Act II)
 build.py                ← assembles index.html and work/ pages; stamps every assets/ link with a content hash
 src/                    ← outlined wordmark paths, favicon, logo SVGs, work-page templates (build inputs; not served)
 .htaccess               ← Hostinger/Apache: HTTPS redirect, caching, security headers

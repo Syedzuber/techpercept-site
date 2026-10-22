@@ -23,6 +23,7 @@
     wa.addEventListener('click', function(){ track('whatsapp_click'); });
   }
   if (EMAIL && q('emailAddr')) q('emailAddr').textContent = EMAIL;
+  if (q('caseLink')) q('caseLink').addEventListener('click', function(){ track('case_study_click', { page: 'project-system' }); });
   var form = q('leadForm');
   if (form) {
     /* Zoho web-to-lead needs the action URL plus two org/form tokens as hidden fields
