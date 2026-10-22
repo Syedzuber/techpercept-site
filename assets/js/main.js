@@ -80,6 +80,14 @@
     });
   })();
 
+  /* ===== Hero: the lead's day — always the visitor's most recent 21:04 (tonight if it has passed, else last night) ===== */
+  (function(){
+    var el = q('leadDay'); if (!el) return;
+    var d = new Date();
+    if (d.getHours() * 60 + d.getMinutes() < 21 * 60 + 4) d.setDate(d.getDate() - 1);
+    el.textContent = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getDay()];
+  })();
+
   /* ===== The road ===== */
   function on(id){ var e = q(id); if (e) e.classList.add('on'); }
   function off(id){ var e = q(id); if (e) e.classList.remove('on'); }
